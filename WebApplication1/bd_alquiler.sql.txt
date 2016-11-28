@@ -1,0 +1,59 @@
+create table alquiler (
+numAlq char(5) not null primary key,
+fecAlq date not null,
+fecDev date not null,
+estadAlq varchar(20) not null,
+montoAlq double not null,
+codEmp char(5) not null,
+codVeh char(5) not null,
+tot double not null,
+foreign key (codEmp) references empleado,
+foreign key(codVeh) references vehiculo
+);
+
+
+
+create table vehiculo(
+codVeh char(5) not null primary key,
+matricuVeh varchar(30) not null,
+modelVeh varchar(50) not null,
+motorVeh varchar(50) not null,
+serieVeh varchar(30) not null,
+anioVeh varchar(10) not null,
+estadVeh varchar(20) not null,
+tipoVeh varchar(30) not null,
+precVeh double not null
+);
+
+create table ruta(
+codRut char(5)  not null primary key,
+origRut varchar(30) not null,
+destRut varchar(30) not null,
+paradAut varchar(20) not null,
+precRut double not null
+);
+
+
+create table linea_alquiler(
+numAlq char(5) not null ,
+codRut char(5)  not null ,
+dia date not null,
+hora varchar(20) not null,
+primary key (numAlq,codRut),
+foreign key (codRut) references ruta,
+foreign key(numAlq) references alquiler
+);
+
+
+
+create table empleado(
+codEmp char(5) not null primary key,
+nomEmp varchar(50) not null,
+apeEmp varchar(50) not null,
+dirEmp varchar(30) not null,
+dniEmp char(8) not null,
+licCon varchar(50) not null,
+telEmp varchar(20) not null,
+seguroEmp varchar(50) not null,
+emailEmp varchar(50) not null
+);
