@@ -1,0 +1,151 @@
+#doc{
+    width:  820px;
+    height: 160px;
+
+}
+#spac{
+    width:  820px;
+    height: 40px;
+    
+    
+}
+#bot{
+    
+    background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+#izq{
+    width: 400px;
+    height: 150px;
+    background-color:  darkgrey;
+    border-width: 2px;
+    border-color:  black;
+    border-style:  solid;
+    margin: 2px;
+    float: left;
+}
+#der{
+    width: 400px;
+    height: 150px;
+    background-color:  darkgrey;
+    border-width: 2px;
+    border-color:  black;
+    border-style:  solid;
+    margin: 2px;
+    float: left;
+}
+#det{
+    width: 810px;
+    height: 300px;
+    background-color:  darkgrey;
+    border-width: 2px;
+    border-color:  black;
+    border-style:  solid;
+    margin: 2px;
+    float: left;    
+}
+#pie{
+    width: 810px;
+    height: 60px;
+    background-color:  darkgrey;
+    border-width: 2px;
+    border-color:  black;
+    border-style:  solid;
+    margin: 2px;
+    float: left;     
+}
+#tabDer{
+    width: 270px;
+    height: 50px;
+    text-align:  center;
+    font-family:  Comic Sans Ms;
+    font-size: 10px;
+    margin: 20px;
+    border-width: 2px;
+    
+}
+#tabIzq{
+    width: 380px;
+    height: 140px;
+    text-align:  center;
+    font-family:  Comic Sans Ms;
+    font-size: 16px;    
+}
+#tabDet{
+    text-align:  left;
+    font-family:  Comic Sans Ms;
+    font-size: 20px; 
+    font-weight:600;
+  margin: 30px;
+    
+}
+#tabPie{
+    width: 800px;
+    height: 50px;
+    text-align:  center;
+    font-family:  Comic Sans Ms;
+    font-size: 16px;    
+    
+}
+#tabSpace{
+    width: 820px;
+    height: 50px;
+    text-align:  center;
+    font-size: 50px;  
+    margin: 20px;
+           
+}
+
+#enc{
+    width: 820px;
+    height: 60px;
+    text-align: center;
+    font-family:  Comic Sans Ms;
+    background-color:  azure;
+    border-width: 2px;
+    border-color:  black;
+    border-style:  dashed;
+    margin: 20px;
+    float: center;
+    
+}
+#tabSpace2{
+        width: 810px;
+    height: 30px;
+    text-align: center;
+    background-color:  darkgrey;
+    border-width: 4px;
+    border-color:  white;
+    border-style:  solid;
+    margin: 30px;
+    float: center;
+           
+}
+
+#med{
+    width: 820px;
+    height: 300px;
+    text-align: center;
+    font-family:  Comic Sans Ms;
+    background-color:  azure;
+    border-width: 2px;
+    border-color:  black;
+    border-style:  dashed;
+    margin: 20px;
+    float: center;
+    
+}
+
+
