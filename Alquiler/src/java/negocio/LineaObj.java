@@ -5,8 +5,7 @@ import java.util.Date;
 
 public class LineaObj {
     
-    private String numAlq, codRut, hora;
-    private Date dia;
+    private String numAlq, codRut;
 
     public String getNumAlq() {
         return numAlq;
@@ -24,28 +23,4 @@ public class LineaObj {
         this.codRut = codRut;
     }
 
-    public String getHora() {
-        return hora;
-    }
-
-    public void setHora(String hora) {
-        this.hora = hora;
-    }
-
-    public Date getDia() {
-        return dia;
-    }
-
-    public void setDia(Date dia) {
-        this.dia = dia;
-    }
-
-    public RutaObj getRut() {
-        return RutaObj;
-    }
-
-
-    public void setRut(RutaObj rut) {
-        this.rut = rut;
-    }
 }

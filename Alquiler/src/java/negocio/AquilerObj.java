@@ -9,10 +9,18 @@ import java.util.List;
 public class AquilerObj {
     
     private List cesta = new ArrayList();
-    private String numAlq, fecAlq, estadAlq;
+    private String numAlq, fecAlq, estadAlq, hora;
     private double tot, desct;
     private EmpleadoObj codEmp;
     private VehiculoObj codVeh;
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
 
     public String getNumAlq() {
         return numAlq;
