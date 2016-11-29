@@ -2,8 +2,9 @@ package negocio;
 
 public class VehiculoObj {
     
-    private String codVeh, NFlota, matricuVeh, modelVeh, motorVeh, serieVeh, anioVeh, estadVeh, tipoVeh, codEmp;
+    private String codVeh, NFlota, matricuVeh, modelVeh, motorVeh, serieVeh, anioVeh, estadVeh, tipoVeh;
     private double precVeh;
+    private VehiculoObj codEmp;
 
     public String getCodVeh() {
         return codVeh;
@@ -77,14 +78,16 @@ public class VehiculoObj {
         this.tipoVeh = tipoVeh;
     }
 
-    public String getCodEmp() {
+    public VehiculoObj getCodEmp() {
         return codEmp;
     }
 
-    public void setCodEmp(String codEmp) {
+    public void setCodEmp(VehiculoObj codEmp) {
         this.codEmp = codEmp;
     }
 
+    
+    
     public double getPrecVeh() {
         return precVeh;
     }
