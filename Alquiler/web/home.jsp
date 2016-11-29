@@ -15,9 +15,14 @@
         <%@ include file="styls/plantilla-part02.jsp" %>
         <!-- TITULO PÁGINA -->
         <div class="row tile_count">
+            
         </div>
         <!-- FIN TITULO PÁGINA -->
         <!-- CUERPO DE LA PÁGINA -->
+        
+        <li><a href="Alquiler.jsp">Nuevo Alquiler</a></li>
+        
+        
         
         <!-- FIN CUERPO DE LA PÁGINA-->
         

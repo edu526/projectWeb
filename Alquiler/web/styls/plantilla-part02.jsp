@@ -13,18 +13,35 @@
                     <!-- sidebar menu -->
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                         <div class="menu_section">
-                            <h3>General</h3>
+                            <h3>Mantenimiento</h3>
                             <ul class="nav side-menu">
                                 <!-- Menu 01-->
                                 <li><a href="home.jsp"><i class="fa fa-home"></i> Home</a>
                                 </li>
                                 <!-- END Menu 01-->
                                 <!-- Menu 02-->
-                                <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-edit"></i> Empleado <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="#">General Form</a></li>
+                                        <li><a href="GrabarEmpleado.jsp">Agregar uno nuevo</a></li>
+                                        <li><a href="BuscarEmpleado.jsp">Listar</a></li>
+                                        
                                     </ul>
                                 </li>
+
+                                <li><a><i class="fa fa-edit"></i> Vehiculo <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="GrabarVehiculo.jsp">Agregar uno nuevo</a></li>
+                                        <li><a href="BuscarVehiculo.jsp">Listar</a></li>
+                                    </ul>
+                                </li>
+                                
+                                <li><a><i class="fa fa-edit"></i> Ruta <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="GrabarRuta.jsp">Agregar uno nuevo</a></li>
+                                        <li><a href="BuscarRuta.jsp">Listar</a></li>
+                                    </ul>
+                                </li>
+                                
                                 <!-- END Menu 02-->
                             </ul>
                         </div>

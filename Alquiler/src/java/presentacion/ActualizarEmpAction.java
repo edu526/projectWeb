@@ -29,6 +29,7 @@ public class ActualizarEmpAction extends org.apache.struts.action.Action {
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         ActualizarEmpForm x=(ActualizarEmpForm) form;
+ 
         request.getSession().setAttribute("msg",ser.actualizarEmp(x.getCodEmp(), x.getNomEmp(), x.getApeEmp(), x.getDirEmp(),x.getDniEmp(), x.getLicCon(), x.getTelEmp(), x.getSeguroEmp(), x.getEmailEmp()));
         return mapping.findForward("Mensaje");
     }
