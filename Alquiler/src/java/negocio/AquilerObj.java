@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 public class AquilerObj {
     
@@ -88,14 +89,17 @@ public class AquilerObj {
     }
        
     public String getGenerarNumero(){
-        return null;
+        int num=0;
+        Random md=new Random();
+        num=(int)(md.nextDouble()*100+0);
+        return String.valueOf("P"+num);
     }
     
     public double getCalcularTotal(){
         double total=0;
         for(int i=0;i<cesta.size();i++){
             LineaObj lin =(LineaObj)cesta.get(i);
-            total+=lin.getImp();
+            total+=lin.getTotal();
         }        
         return total;
     }
@@ -114,7 +118,7 @@ public class AquilerObj {
     
     public void agregarLinea(RutaObj rut,int dia){
         LineaObj lin=new LineaObj();
-        lin.setRut(rut);
+        lin.setRuta(rut);
         lin.setDia(dia);
         cesta.add(lin);
     } 
@@ -122,7 +126,7 @@ public class AquilerObj {
     public void quitarLinea(String cod){
         for(int i=0;i<cesta.size();i++){
             LineaObj lin=(LineaObj)cesta.get(i);
-            String numObt=lin.getRutaObj().getCodRut();
+            String numObt=lin.getRuta().getCodRut();
             if(numObt.equals(cod)){
                 cesta.remove(i);
             }
@@ -130,4 +134,3 @@ public class AquilerObj {
     }
 }
 
-}
