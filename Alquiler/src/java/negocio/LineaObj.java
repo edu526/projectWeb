@@ -40,5 +40,12 @@ public class LineaObj {
         this.dia = dia;
     }
 
-    
+    public RutaObj getRut() {
+        return RutaObj;
+    }
+
+
+    public void setRut(RutaObj rut) {
+        this.rut = rut;
+    }
 }

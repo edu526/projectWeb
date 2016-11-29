@@ -114,7 +114,7 @@ public class AquilerObj {
     public void quitarLinea(String cod){
         for(int i=0;i<cesta.size();i++){
             LineaObj lin=(LineaObj)cesta.get(i);
-            String numObt=lin.getRut().getCodRut();
+            String numObt=lin.getRutaObj().getCodRut();
             if(numObt.equals(cod)){
                 cesta.remove(i);
             }
