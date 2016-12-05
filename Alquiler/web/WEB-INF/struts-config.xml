@@ -8,15 +8,12 @@
 <struts-config>
     <form-beans>
         <form-bean name="AgregarRutaForm" type="presentacion.AgregarRutaForm"/>
-        <form-bean name="BuscarRutaForm" type="presentacion.BuscarRutaForm"/>
-        <form-bean name="BuscarVehiculoForm" type="presentacion.BuscarVehiculoForm"/>
+        <form-bean name="ListarRutaForm" type="presentacion.ListarRutaForm"/>
+        <form-bean name="ListarVehiculoForm" type="presentacion.ListarVehiculoForm"/>
         <form-bean name="AgregarVehiculoForm" type="presentacion.AgregarVehiculoForm"/>
         <form-bean name="NuevoAlquilerForm" type="presentacion.NuevoAlquilerForm"/>
-        <form-bean name="AgregarEmpForm" type="presentacion.AgregarEmpForm"/>
         <form-bean name="GrabarAlquilerForm" type="presentacion.GrabarAlquilerForm"/>
-        <form-bean name="BuscarEmpForm" type="presentacion.BuscarEmpForm"/>
-        <form-bean name="GrabarEmpForm" type="presentacion.GrabarEmpForm"/>
-    
+        <form-bean name="GrabarEmpForm" type="presentacion.GrabarEmpForm"/>    
     </form-beans>
     
     <global-exceptions>
@@ -39,13 +36,13 @@
             <forward name="Alquiler" path="/Alquiler.jsp" redirect="true"/>
             <forward name="Mensaje" path="/Mensaje.jsp" redirect="true"/>
         </action>
-        <action input="/Alquiler.jsp" name="BuscarVehiculoForm" path="/BuscarVehiculoAction" scope="request" type="presentacion.BuscarVehiculoAction">
+        <action input="/Alquiler.jsp" name="ListarVehiculoForm" path="/ListarVehiculoAction" scope="request" type="presentacion.ListarVehiculoAction">
             <forward name="Listar" path="/BuscarVehiculo.jsp" redirect="true"/>
         </action>
         <action input="/BuscarVehiculo.jsp" name="AgregarVehiculoForm" path="/AgregarVehiculoAction" scope="request" type="presentacion.AgregarVehiculoAction">
             <forward name="Alquilar" path="/Alquiler.jsp" redirect="true"/>
         </action>
-        <action input="/Alquiler.jsp" name="BuscarRutaForm" path="/BuscarRutaAction" scope="request" type="presentacion.BuscarRutaAction">
+        <action input="/Alquiler.jsp" name="ListarRutaForm" path="/ListarRutaAction" scope="request" type="presentacion.ListarRutaAction">
             <forward name="Listar" path="/BuscarRuta.jsp" redirect="true"/>
         </action>
         <action input="/Alquiler.jsp" name="AgregarRutaForm" path="/AgregarRutaAction" scope="request" type="presentacion.AgregarRutaAction">

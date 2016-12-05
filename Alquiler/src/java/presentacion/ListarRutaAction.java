@@ -16,7 +16,7 @@ import persistencia.Datos;
  *
  * @author edd
  */
-public class BuscarRutaAction extends org.apache.struts.action.Action {
+public class ListarRutaAction extends org.apache.struts.action.Action {
 
     private Datos dat;
 

@@ -14,22 +14,13 @@
     </head>
     <body>
         <%@ include file="styls/plantilla-part02.jsp" %>
-        <!-- TITULO PÁGINA -->
-        <div class="row tile_count">
-            
-        </div>
-        <!-- FIN TITULO PÁGINA -->
-        <!-- CUERPO DE LA PÁGINA -->
-        
+        <!-- CUERPO DE LA PÁGINA -->        
         <x:form action="/NuevoAlquilerAction">
             Código Empleado:
             <x:text property="codEmp"/>
-        <x:submit value="Nuevo"/>
-        </x:form>
-        
-        
-        <!-- FIN CUERPO DE LA PÁGINA-->
-        
+            <x:submit value="Nuevo"/>
+        </x:form>               
+        <!-- FIN CUERPO DE LA PÁGINA-->        
         <%@ include file="styls/plantilla-part03.jsp" %>
     </body>
 </html>

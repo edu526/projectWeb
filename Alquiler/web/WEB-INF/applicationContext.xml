@@ -62,11 +62,11 @@
         <property name="ser" ref="serv"/>
     </bean>
           
-    <bean id="/BuscarVehiculoAction" class="presentacion.BuscarVehiculoAction">
+    <bean id="/ListarVehiculoAction" class="presentacion.ListarVehiculoAction">
         <property name="dat" ref="dato"/>
     </bean>
 
-    <bean id="/BuscarRutaAction" class="presentacion.BuscarRutaAction">
+    <bean id="/ListarRutaAction" class="presentacion.ListarRutaAction">
         <property name="dat" ref="dato"/>
     </bean>
 

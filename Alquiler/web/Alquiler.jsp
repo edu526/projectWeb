@@ -118,11 +118,11 @@
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-3">
-                                        <x:form action="/BuscarVehiculoAction">
-                                            <x:submit value="Buscar Vehículo"/>
+                                        <x:form action="/ListarVehiculoAction">
+                                            <x:submit property="lisVeh" value="Buscar Vehículo"/>
                                         </x:form>
-                                        <x:form action="/BuscarRutaAction">
-                                            <x:submit value="Buscar Ruta" />
+                                        <x:form action="/ListarRutaAction">
+                                            <x:submit  property="lisRut" value="Buscar Ruta" />
                                         </x:form>
                                         <x:form action="/GrabarAlquilerAction">
                                             <x:submit value="Grabar"/>
