@@ -6,8 +6,6 @@
 package persistencia;
 
 import java.io.Serializable;
-import java.util.Date;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -16,33 +14,28 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Miriam
+ * @author edd
  */
 @Entity
 @Table(name = "LINEA_ALQUILER")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "LineaAlquiler.findAll", query = "SELECT l FROM LineaAlquiler l"),
-    @NamedQuery(name = "LineaAlquiler.findByNumalq", query = "SELECT l FROM LineaAlquiler l WHERE l.lineaAlquilerPK.numalq = :numalq"),
-    @NamedQuery(name = "LineaAlquiler.findByCodrut", query = "SELECT l FROM LineaAlquiler l WHERE l.lineaAlquilerPK.codrut = :codrut"),
-    @NamedQuery(name = "LineaAlquiler.findByDia", query = "SELECT l FROM LineaAlquiler l WHERE l.dia = :dia"),
-    @NamedQuery(name = "LineaAlquiler.findByHora", query = "SELECT l FROM LineaAlquiler l WHERE l.hora = :hora")})
+    @NamedQuery(name = "LineaAlquiler.findAll", query = "SELECT l FROM LineaAlquiler l")
+    , @NamedQuery(name = "LineaAlquiler.findByNumalq", query = "SELECT l FROM LineaAlquiler l WHERE l.lineaAlquilerPK.numalq = :numalq")
+    , @NamedQuery(name = "LineaAlquiler.findByCodrut", query = "SELECT l FROM LineaAlquiler l WHERE l.lineaAlquilerPK.codrut = :codrut")
+    , @NamedQuery(name = "LineaAlquiler.findByFecha", query = "SELECT l FROM LineaAlquiler l WHERE l.fecha = :fecha")
+    , @NamedQuery(name = "LineaAlquiler.findByHora", query = "SELECT l FROM LineaAlquiler l WHERE l.hora = :hora")})
 public class LineaAlquiler implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected LineaAlquilerPK lineaAlquilerPK;
-    @Basic(optional = false)
-    @Column(name = "DIA")
-    @Temporal(TemporalType.DATE)
-    private Date dia;
-    @Basic(optional = false)
+    @Column(name = "FECHA")
+    private String fecha;
     @Column(name = "HORA")
     private String hora;
     @JoinColumn(name = "NUMALQ", referencedColumnName = "NUMALQ", insertable = false, updatable = false)
@@ -59,12 +52,6 @@ public class LineaAlquiler implements Serializable {
         this.lineaAlquilerPK = lineaAlquilerPK;
     }
 
-    public LineaAlquiler(LineaAlquilerPK lineaAlquilerPK, Date dia, String hora) {
-        this.lineaAlquilerPK = lineaAlquilerPK;
-        this.dia = dia;
-        this.hora = hora;
-    }
-
     public LineaAlquiler(String numalq, String codrut) {
         this.lineaAlquilerPK = new LineaAlquilerPK(numalq, codrut);
     }
@@ -77,12 +64,12 @@ public class LineaAlquiler implements Serializable {
         this.lineaAlquilerPK = lineaAlquilerPK;
     }
 
-    public Date getDia() {
-        return dia;
+    public String getFecha() {
+        return fecha;
     }
 
-    public void setDia(Date dia) {
-        this.dia = dia;
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
     public String getHora() {

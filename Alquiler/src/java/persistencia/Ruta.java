@@ -21,18 +21,16 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Miriam
+ * @author edd
  */
 @Entity
 @Table(name = "RUTA")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Ruta.findAll", query = "SELECT r FROM Ruta r"),
-    @NamedQuery(name = "Ruta.findByCodrut", query = "SELECT r FROM Ruta r WHERE r.codrut = :codrut"),
-    @NamedQuery(name = "Ruta.findByOrigrut", query = "SELECT r FROM Ruta r WHERE r.origrut = :origrut"),
-    @NamedQuery(name = "Ruta.findByDestrut", query = "SELECT r FROM Ruta r WHERE r.destrut = :destrut"),
-    @NamedQuery(name = "Ruta.findByParadaut", query = "SELECT r FROM Ruta r WHERE r.paradaut = :paradaut"),
-    @NamedQuery(name = "Ruta.findByPrecrut", query = "SELECT r FROM Ruta r WHERE r.precrut = :precrut")})
+    @NamedQuery(name = "Ruta.findAll", query = "SELECT r FROM Ruta r")
+    , @NamedQuery(name = "Ruta.findByCodrut", query = "SELECT r FROM Ruta r WHERE r.codrut = :codrut")
+    , @NamedQuery(name = "Ruta.findByParadaut", query = "SELECT r FROM Ruta r WHERE r.paradaut = :paradaut")
+    , @NamedQuery(name = "Ruta.findByPrecrut", query = "SELECT r FROM Ruta r WHERE r.precrut = :precrut")})
 public class Ruta implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,18 +38,11 @@ public class Ruta implements Serializable {
     @Basic(optional = false)
     @Column(name = "CODRUT")
     private String codrut;
-    @Basic(optional = false)
-    @Column(name = "ORIGRUT")
-    private String origrut;
-    @Basic(optional = false)
-    @Column(name = "DESTRUT")
-    private String destrut;
-    @Basic(optional = false)
     @Column(name = "PARADAUT")
     private String paradaut;
-    @Basic(optional = false)
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "PRECRUT")
-    private double precrut;
+    private Double precrut;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ruta")
     private List<LineaAlquiler> lineaAlquilerList;
 
@@ -62,36 +53,12 @@ public class Ruta implements Serializable {
         this.codrut = codrut;
     }
 
-    public Ruta(String codrut, String origrut, String destrut, String paradaut, double precrut) {
-        this.codrut = codrut;
-        this.origrut = origrut;
-        this.destrut = destrut;
-        this.paradaut = paradaut;
-        this.precrut = precrut;
-    }
-
     public String getCodrut() {
         return codrut;
     }
 
     public void setCodrut(String codrut) {
         this.codrut = codrut;
-    }
-
-    public String getOrigrut() {
-        return origrut;
-    }
-
-    public void setOrigrut(String origrut) {
-        this.origrut = origrut;
-    }
-
-    public String getDestrut() {
-        return destrut;
-    }
-
-    public void setDestrut(String destrut) {
-        this.destrut = destrut;
     }
 
     public String getParadaut() {
@@ -102,11 +69,11 @@ public class Ruta implements Serializable {
         this.paradaut = paradaut;
     }
 
-    public double getPrecrut() {
+    public Double getPrecrut() {
         return precrut;
     }
 
-    public void setPrecrut(double precrut) {
+    public void setPrecrut(Double precrut) {
         this.precrut = precrut;
     }
 

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import servicios.Servicio;
+import persistencia.Datos;
 
 /**
  *
@@ -18,17 +18,29 @@ import servicios.Servicio;
  */
 public class GrabarEmpAction extends org.apache.struts.action.Action {
 
-    private Servicio ser;
+    private Datos dat;
 
-    public void setSer(Servicio ser) {
-        this.ser = ser;
+    public void setDat(Datos dat) {
+        this.dat = dat;
     }
+
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        GrabarEmpForm x=(GrabarEmpForm) form;
-        request.getSession().setAttribute("msg",ser.grabarEmp(x.getCodEmp(), x.getNomEmp(), x.getApeEmp(), x.getDirEmp(),x.getDniEmp(), x.getLicCon(), x.getTelEmp(), x.getSeguroEmp(), x.getEmailEmp()));
+        GrabarEmpForm x = (GrabarEmpForm) form;
+        
+        String msg = dat.grabarEmp(x.getCodEmp(), 
+                x.getNomEmp(), 
+                x.getApeEmp(), 
+                x.getDirEmp(), 
+                x.getDniEmp(), 
+                x.getLicCon(), 
+                x.getTelEmp(), 
+                x.getSeguroEmp(), 
+                x.getEmailEmp());
+        
+        request.getSession().setAttribute("msg", msg);
         return mapping.findForward("Mensaje");
     }
 }

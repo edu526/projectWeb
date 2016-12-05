@@ -1,24 +1,36 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package persistencia;
 
-/**
- *
- * @author Miriam
- */
+import java.util.List;
+
 public interface Datos {
+
     public String grabarEmp(String codEmp, String nomEmp, String apeEmp, String dirEmp, String dniEmp, String licCon, String telEmp, String seguroEmp, String emailEmp);
+
     public Empleado buscarEmp(String codEmp);
+
     public String actualizarEmp(String codEmp, String nomEmp, String apeEmp, String dirEmp, String dniEmp, String licCon, String telEmp, String seguroEmp, String emailEmp);
+
+    public String grabarVeh(String codVeh, String NFlota, String matricuVeh, String modelVeh, String motorVeh, String serieVeh, String anioVeh, String estadVeh, String tipoVeh, double precVeh, String codEmp);
+
+    public Vehiculo buscarVeh(String codVeh);
+
+    public String actualizarVeh(String codVeh, String NFlota, String matricuVeh, String modelVeh, String motorVeh, String serieVeh, String anioVeh, String estadVeh, String tipoVeh, double precVeh, String codEmp);
+
+    public String grabarRut(String codRut, String paradAut, double precRut);
+
+    public Ruta buscarRut(String codRut);
+
+    public String actualizarRut(String codRut, String paradAut, double precRut);
+
+    public boolean grabarAlquiler(String numAlq, String fecAlq, String estadAlq, String codEmp, String codVeh, double tot, double desct);
+
+    public String grabarDetalle(String numAlq, String codRut);
     
-    public String grabarVeh(String codVeh,String matricuVeh, String modelVeh, String motorVeh, String serieVeh, String anioVeh, String estadVeh, String tipoVeh, double precVeh);
-     public Vehiculo buscarVeh(String codVeh);
-    public String actualizarVeh(String codVeh,String matricuVeh, String modelVeh, String motorVeh, String serieVeh, String anioVeh, String estadVeh, String tipoVeh, double precVeh);
+    public List listarEmp();
     
-    public String grabarRut(String codRut, String origRut, String destRut, String paradAut, double precRut);
-        public Ruta buscarRut(String codRut);
-        public String actualizarRut(String codRut, String origRut, String destRut, String paradAut, double precRut);
+    public List listarRutas();
+    
+    public List listarVehiculos();
+    
+    public int getNumAlq();
 }

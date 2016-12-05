@@ -12,7 +12,7 @@ import javax.persistence.Embeddable;
 
 /**
  *
- * @author Miriam
+ * @author edd
  */
 @Embeddable
 public class LineaAlquilerPK implements Serializable {

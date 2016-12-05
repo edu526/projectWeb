@@ -1,9 +1,8 @@
-
 package negocio;
 
 public class EmpleadoObj {
-    
-    private String codEmp, nomEmp, apeEmp, dirEmp, dniEmp, licCon, telEmp, seguroEmp, emailEmp; 
+
+    private String codEmp, nomEmp, apeEmp, dirEmp, dniEmp, licCon, telEmp, seguroEmp, emailEmp;
 
     public String getCodEmp() {
         return codEmp;
@@ -76,5 +75,5 @@ public class EmpleadoObj {
     public void setEmailEmp(String emailEmp) {
         this.emailEmp = emailEmp;
     }
-    
+
 }

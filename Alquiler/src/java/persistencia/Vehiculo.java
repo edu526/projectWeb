@@ -8,10 +8,11 @@ package persistencia;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -21,22 +22,23 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Miriam
+ * @author edd
  */
 @Entity
 @Table(name = "VEHICULO")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Vehiculo.findAll", query = "SELECT v FROM Vehiculo v"),
-    @NamedQuery(name = "Vehiculo.findByCodveh", query = "SELECT v FROM Vehiculo v WHERE v.codveh = :codveh"),
-    @NamedQuery(name = "Vehiculo.findByMatricuveh", query = "SELECT v FROM Vehiculo v WHERE v.matricuveh = :matricuveh"),
-    @NamedQuery(name = "Vehiculo.findByModelveh", query = "SELECT v FROM Vehiculo v WHERE v.modelveh = :modelveh"),
-    @NamedQuery(name = "Vehiculo.findByMotorveh", query = "SELECT v FROM Vehiculo v WHERE v.motorveh = :motorveh"),
-    @NamedQuery(name = "Vehiculo.findBySerieveh", query = "SELECT v FROM Vehiculo v WHERE v.serieveh = :serieveh"),
-    @NamedQuery(name = "Vehiculo.findByAnioveh", query = "SELECT v FROM Vehiculo v WHERE v.anioveh = :anioveh"),
-    @NamedQuery(name = "Vehiculo.findByEstadveh", query = "SELECT v FROM Vehiculo v WHERE v.estadveh = :estadveh"),
-    @NamedQuery(name = "Vehiculo.findByTipoveh", query = "SELECT v FROM Vehiculo v WHERE v.tipoveh = :tipoveh"),
-    @NamedQuery(name = "Vehiculo.findByPrecveh", query = "SELECT v FROM Vehiculo v WHERE v.precveh = :precveh")})
+    @NamedQuery(name = "Vehiculo.findAll", query = "SELECT v FROM Vehiculo v")
+    , @NamedQuery(name = "Vehiculo.findByCodveh", query = "SELECT v FROM Vehiculo v WHERE v.codveh = :codveh")
+    , @NamedQuery(name = "Vehiculo.findByNflota", query = "SELECT v FROM Vehiculo v WHERE v.nflota = :nflota")
+    , @NamedQuery(name = "Vehiculo.findByMatricuveh", query = "SELECT v FROM Vehiculo v WHERE v.matricuveh = :matricuveh")
+    , @NamedQuery(name = "Vehiculo.findByModelveh", query = "SELECT v FROM Vehiculo v WHERE v.modelveh = :modelveh")
+    , @NamedQuery(name = "Vehiculo.findByMotorveh", query = "SELECT v FROM Vehiculo v WHERE v.motorveh = :motorveh")
+    , @NamedQuery(name = "Vehiculo.findBySerieveh", query = "SELECT v FROM Vehiculo v WHERE v.serieveh = :serieveh")
+    , @NamedQuery(name = "Vehiculo.findByAnioveh", query = "SELECT v FROM Vehiculo v WHERE v.anioveh = :anioveh")
+    , @NamedQuery(name = "Vehiculo.findByEstadveh", query = "SELECT v FROM Vehiculo v WHERE v.estadveh = :estadveh")
+    , @NamedQuery(name = "Vehiculo.findByTipoveh", query = "SELECT v FROM Vehiculo v WHERE v.tipoveh = :tipoveh")
+    , @NamedQuery(name = "Vehiculo.findByPrecveh", query = "SELECT v FROM Vehiculo v WHERE v.precveh = :precveh")})
 public class Vehiculo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,32 +46,30 @@ public class Vehiculo implements Serializable {
     @Basic(optional = false)
     @Column(name = "CODVEH")
     private String codveh;
-    @Basic(optional = false)
+    @Column(name = "NFLOTA")
+    private String nflota;
     @Column(name = "MATRICUVEH")
     private String matricuveh;
-    @Basic(optional = false)
     @Column(name = "MODELVEH")
     private String modelveh;
-    @Basic(optional = false)
     @Column(name = "MOTORVEH")
     private String motorveh;
-    @Basic(optional = false)
     @Column(name = "SERIEVEH")
     private String serieveh;
-    @Basic(optional = false)
     @Column(name = "ANIOVEH")
     private String anioveh;
-    @Basic(optional = false)
     @Column(name = "ESTADVEH")
     private String estadveh;
-    @Basic(optional = false)
     @Column(name = "TIPOVEH")
     private String tipoveh;
-    @Basic(optional = false)
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "PRECVEH")
-    private double precveh;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codveh")
+    private Double precveh;
+    @OneToMany(mappedBy = "codveh")
     private List<Alquiler> alquilerList;
+    @JoinColumn(name = "CODEMP", referencedColumnName = "CODEMP")
+    @ManyToOne
+    private Empleado codemp;
 
     public Vehiculo() {
     }
@@ -78,24 +78,20 @@ public class Vehiculo implements Serializable {
         this.codveh = codveh;
     }
 
-    public Vehiculo(String codveh, String matricuveh, String modelveh, String motorveh, String serieveh, String anioveh, String estadveh, String tipoveh, double precveh) {
-        this.codveh = codveh;
-        this.matricuveh = matricuveh;
-        this.modelveh = modelveh;
-        this.motorveh = motorveh;
-        this.serieveh = serieveh;
-        this.anioveh = anioveh;
-        this.estadveh = estadveh;
-        this.tipoveh = tipoveh;
-        this.precveh = precveh;
-    }
-
     public String getCodveh() {
         return codveh;
     }
 
     public void setCodveh(String codveh) {
         this.codveh = codveh;
+    }
+
+    public String getNflota() {
+        return nflota;
+    }
+
+    public void setNflota(String nflota) {
+        this.nflota = nflota;
     }
 
     public String getMatricuveh() {
@@ -154,11 +150,11 @@ public class Vehiculo implements Serializable {
         this.tipoveh = tipoveh;
     }
 
-    public double getPrecveh() {
+    public Double getPrecveh() {
         return precveh;
     }
 
-    public void setPrecveh(double precveh) {
+    public void setPrecveh(Double precveh) {
         this.precveh = precveh;
     }
 
@@ -169,6 +165,14 @@ public class Vehiculo implements Serializable {
 
     public void setAlquilerList(List<Alquiler> alquilerList) {
         this.alquilerList = alquilerList;
+    }
+
+    public Empleado getCodemp() {
+        return codemp;
+    }
+
+    public void setCodemp(Empleado codemp) {
+        this.codemp = codemp;
     }
 
     @Override

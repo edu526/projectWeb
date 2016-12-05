@@ -21,7 +21,7 @@ import persistencia.exceptions.PreexistingEntityException;
 
 /**
  *
- * @author Miriam
+ * @author edd
  */
 public class AlquilerJpaController implements Serializable {
 
@@ -30,13 +30,12 @@ public class AlquilerJpaController implements Serializable {
     }
     private EntityManagerFactory emf = null;
 
-    public AlquilerJpaController() {
-        emf=Persistence.createEntityManagerFactory("AlquilerEmpPU");
-    }
-    
-
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
+    }
+
+    public AlquilerJpaController() {
+        this.emf = Persistence.createEntityManagerFactory("AlquilerEmpPU");
     }
 
     public void create(Alquiler alquiler) throws PreexistingEntityException, Exception {

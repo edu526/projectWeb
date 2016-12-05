@@ -8,7 +8,6 @@
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
 
-    
     <bean id="alqu" class="persistencia.Alquiler"/>
     <bean id="alquCont" class="persistencia.AlquilerJpaController"/>
     <bean id="empe" class="persistencia.Empleado"/>
@@ -21,6 +20,7 @@
     <bean id="vehi" class="persistencia.Vehiculo"/>
     <bean id="vehiCont" class="persistencia.VehiculoJpaController"/>
     
+ 
 
    
     <bean id="dato" class="persistencia.DatosImp">
@@ -35,49 +35,39 @@
         <property name="rutCon" ref="rutaCont"/>
         <property name="veh" ref="vehi"/>
         <property name="vehCon" ref="vehiCont"/>
-
-
-
     </bean>
-    
-    <bean id="serv" class="servicios.ServicioImp">
-       <property name="dat" ref="dato"/>
+
+    <bean id="serv" class="servicio.ServicioImp">
+        <property name="dat" ref="dato"/>
     </bean>
-    
+  
     <bean id="/GrabarEmpAction" class="presentacion.GrabarEmpAction">
+        <property name="dat" ref="dato"/>
+    </bean>
+  
+    <bean id="/GrabarAlquilerAction" class="presentacion.GrabarAlquilerAction">
         <property name="ser" ref="serv"/>
     </bean>
-    
-    <bean id="/BuscarEmpAction" class="presentacion.BuscarEmpAction">
+
+    <bean id="/NuevoAlquilerAction" class="presentacion.NuevoAlquilerAction">
+        <property name="dat" ref="dato"/>
         <property name="ser" ref="serv"/>
     </bean>
-    
-        <bean id="/ActualizarEmpAction" class="presentacion.ActualizarEmpAction">
+
+    <bean id="/AgregarVehiculoAction" class="presentacion.AgregarVehiculoAction">
         <property name="ser" ref="serv"/>
     </bean>
-    
-    <bean id="/GrabarVehAction" class="presentacion.GrabarVehAction">
+  
+    <bean id="/AgregarRutaAction" class="presentacion.AgregarRutaAction">
         <property name="ser" ref="serv"/>
     </bean>
-    
-    <bean id="/BuscarVehAction" class="presentacion.BuscarVehAction">
-        <property name="ser" ref="serv"/>
+          
+    <bean id="/BuscarVehiculoAction" class="presentacion.BuscarVehiculoAction">
+        <property name="dat" ref="dato"/>
     </bean>
-    
-        <bean id="/ActualizarVehAction" class="presentacion.ActualizarVehAction">
-        <property name="ser" ref="serv"/>
-    </bean>
-    
-        <bean id="/GrabarRutAction" class="presentacion.GrabarRutAction">
-        <property name="ser" ref="serv"/>
-    </bean>
-    
-    <bean id="/BuscarRutAction" class="presentacion.BuscarRutAction">
-        <property name="ser" ref="serv"/>
-    </bean>
-    
-        <bean id="/ActualizarRutAction" class="presentacion.ActualizarRutAction">
-        <property name="ser" ref="serv"/>
+
+    <bean id="/BuscarRutaAction" class="presentacion.BuscarRutaAction">
+        <property name="dat" ref="dato"/>
     </bean>
 
 </beans>

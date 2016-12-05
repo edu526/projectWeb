@@ -15,13 +15,12 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import persistencia.exceptions.IllegalOrphanException;
 import persistencia.exceptions.NonexistentEntityException;
 import persistencia.exceptions.PreexistingEntityException;
 
 /**
  *
- * @author Miriam
+ * @author edd
  */
 public class EmpleadoJpaController implements Serializable {
 
@@ -30,18 +29,20 @@ public class EmpleadoJpaController implements Serializable {
     }
     private EntityManagerFactory emf = null;
 
-    public EmpleadoJpaController() {
-    emf=Persistence.createEntityManagerFactory("AlquilerEmpPU");
-    }
-
-    
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
+    }
+
+    public EmpleadoJpaController() {
+        this.emf = Persistence.createEntityManagerFactory("AlquilerEmpPU");
     }
 
     public void create(Empleado empleado) throws PreexistingEntityException, Exception {
         if (empleado.getAlquilerList() == null) {
             empleado.setAlquilerList(new ArrayList<Alquiler>());
+        }
+        if (empleado.getVehiculoList() == null) {
+            empleado.setVehiculoList(new ArrayList<Vehiculo>());
         }
         EntityManager em = null;
         try {
@@ -53,6 +54,12 @@ public class EmpleadoJpaController implements Serializable {
                 attachedAlquilerList.add(alquilerListAlquilerToAttach);
             }
             empleado.setAlquilerList(attachedAlquilerList);
+            List<Vehiculo> attachedVehiculoList = new ArrayList<Vehiculo>();
+            for (Vehiculo vehiculoListVehiculoToAttach : empleado.getVehiculoList()) {
+                vehiculoListVehiculoToAttach = em.getReference(vehiculoListVehiculoToAttach.getClass(), vehiculoListVehiculoToAttach.getCodveh());
+                attachedVehiculoList.add(vehiculoListVehiculoToAttach);
+            }
+            empleado.setVehiculoList(attachedVehiculoList);
             em.persist(empleado);
             for (Alquiler alquilerListAlquiler : empleado.getAlquilerList()) {
                 Empleado oldCodempOfAlquilerListAlquiler = alquilerListAlquiler.getCodemp();
@@ -61,6 +68,15 @@ public class EmpleadoJpaController implements Serializable {
                 if (oldCodempOfAlquilerListAlquiler != null) {
                     oldCodempOfAlquilerListAlquiler.getAlquilerList().remove(alquilerListAlquiler);
                     oldCodempOfAlquilerListAlquiler = em.merge(oldCodempOfAlquilerListAlquiler);
+                }
+            }
+            for (Vehiculo vehiculoListVehiculo : empleado.getVehiculoList()) {
+                Empleado oldCodempOfVehiculoListVehiculo = vehiculoListVehiculo.getCodemp();
+                vehiculoListVehiculo.setCodemp(empleado);
+                vehiculoListVehiculo = em.merge(vehiculoListVehiculo);
+                if (oldCodempOfVehiculoListVehiculo != null) {
+                    oldCodempOfVehiculoListVehiculo.getVehiculoList().remove(vehiculoListVehiculo);
+                    oldCodempOfVehiculoListVehiculo = em.merge(oldCodempOfVehiculoListVehiculo);
                 }
             }
             em.getTransaction().commit();
@@ -76,7 +92,7 @@ public class EmpleadoJpaController implements Serializable {
         }
     }
 
-    public void edit(Empleado empleado) throws IllegalOrphanException, NonexistentEntityException, Exception {
+    public void edit(Empleado empleado) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -84,18 +100,8 @@ public class EmpleadoJpaController implements Serializable {
             Empleado persistentEmpleado = em.find(Empleado.class, empleado.getCodemp());
             List<Alquiler> alquilerListOld = persistentEmpleado.getAlquilerList();
             List<Alquiler> alquilerListNew = empleado.getAlquilerList();
-            List<String> illegalOrphanMessages = null;
-            for (Alquiler alquilerListOldAlquiler : alquilerListOld) {
-                if (!alquilerListNew.contains(alquilerListOldAlquiler)) {
-                    if (illegalOrphanMessages == null) {
-                        illegalOrphanMessages = new ArrayList<String>();
-                    }
-                    illegalOrphanMessages.add("You must retain Alquiler " + alquilerListOldAlquiler + " since its codemp field is not nullable.");
-                }
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
-            }
+            List<Vehiculo> vehiculoListOld = persistentEmpleado.getVehiculoList();
+            List<Vehiculo> vehiculoListNew = empleado.getVehiculoList();
             List<Alquiler> attachedAlquilerListNew = new ArrayList<Alquiler>();
             for (Alquiler alquilerListNewAlquilerToAttach : alquilerListNew) {
                 alquilerListNewAlquilerToAttach = em.getReference(alquilerListNewAlquilerToAttach.getClass(), alquilerListNewAlquilerToAttach.getNumalq());
@@ -103,7 +109,20 @@ public class EmpleadoJpaController implements Serializable {
             }
             alquilerListNew = attachedAlquilerListNew;
             empleado.setAlquilerList(alquilerListNew);
+            List<Vehiculo> attachedVehiculoListNew = new ArrayList<Vehiculo>();
+            for (Vehiculo vehiculoListNewVehiculoToAttach : vehiculoListNew) {
+                vehiculoListNewVehiculoToAttach = em.getReference(vehiculoListNewVehiculoToAttach.getClass(), vehiculoListNewVehiculoToAttach.getCodveh());
+                attachedVehiculoListNew.add(vehiculoListNewVehiculoToAttach);
+            }
+            vehiculoListNew = attachedVehiculoListNew;
+            empleado.setVehiculoList(vehiculoListNew);
             empleado = em.merge(empleado);
+            for (Alquiler alquilerListOldAlquiler : alquilerListOld) {
+                if (!alquilerListNew.contains(alquilerListOldAlquiler)) {
+                    alquilerListOldAlquiler.setCodemp(null);
+                    alquilerListOldAlquiler = em.merge(alquilerListOldAlquiler);
+                }
+            }
             for (Alquiler alquilerListNewAlquiler : alquilerListNew) {
                 if (!alquilerListOld.contains(alquilerListNewAlquiler)) {
                     Empleado oldCodempOfAlquilerListNewAlquiler = alquilerListNewAlquiler.getCodemp();
@@ -112,6 +131,23 @@ public class EmpleadoJpaController implements Serializable {
                     if (oldCodempOfAlquilerListNewAlquiler != null && !oldCodempOfAlquilerListNewAlquiler.equals(empleado)) {
                         oldCodempOfAlquilerListNewAlquiler.getAlquilerList().remove(alquilerListNewAlquiler);
                         oldCodempOfAlquilerListNewAlquiler = em.merge(oldCodempOfAlquilerListNewAlquiler);
+                    }
+                }
+            }
+            for (Vehiculo vehiculoListOldVehiculo : vehiculoListOld) {
+                if (!vehiculoListNew.contains(vehiculoListOldVehiculo)) {
+                    vehiculoListOldVehiculo.setCodemp(null);
+                    vehiculoListOldVehiculo = em.merge(vehiculoListOldVehiculo);
+                }
+            }
+            for (Vehiculo vehiculoListNewVehiculo : vehiculoListNew) {
+                if (!vehiculoListOld.contains(vehiculoListNewVehiculo)) {
+                    Empleado oldCodempOfVehiculoListNewVehiculo = vehiculoListNewVehiculo.getCodemp();
+                    vehiculoListNewVehiculo.setCodemp(empleado);
+                    vehiculoListNewVehiculo = em.merge(vehiculoListNewVehiculo);
+                    if (oldCodempOfVehiculoListNewVehiculo != null && !oldCodempOfVehiculoListNewVehiculo.equals(empleado)) {
+                        oldCodempOfVehiculoListNewVehiculo.getVehiculoList().remove(vehiculoListNewVehiculo);
+                        oldCodempOfVehiculoListNewVehiculo = em.merge(oldCodempOfVehiculoListNewVehiculo);
                     }
                 }
             }
@@ -132,7 +168,7 @@ public class EmpleadoJpaController implements Serializable {
         }
     }
 
-    public void destroy(String id) throws IllegalOrphanException, NonexistentEntityException {
+    public void destroy(String id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -144,16 +180,15 @@ public class EmpleadoJpaController implements Serializable {
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The empleado with id " + id + " no longer exists.", enfe);
             }
-            List<String> illegalOrphanMessages = null;
-            List<Alquiler> alquilerListOrphanCheck = empleado.getAlquilerList();
-            for (Alquiler alquilerListOrphanCheckAlquiler : alquilerListOrphanCheck) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("This Empleado (" + empleado + ") cannot be destroyed since the Alquiler " + alquilerListOrphanCheckAlquiler + " in its alquilerList field has a non-nullable codemp field.");
+            List<Alquiler> alquilerList = empleado.getAlquilerList();
+            for (Alquiler alquilerListAlquiler : alquilerList) {
+                alquilerListAlquiler.setCodemp(null);
+                alquilerListAlquiler = em.merge(alquilerListAlquiler);
             }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
+            List<Vehiculo> vehiculoList = empleado.getVehiculoList();
+            for (Vehiculo vehiculoListVehiculo : vehiculoList) {
+                vehiculoListVehiculo.setCodemp(null);
+                vehiculoListVehiculo = em.merge(vehiculoListVehiculo);
             }
             em.remove(empleado);
             em.getTransaction().commit();

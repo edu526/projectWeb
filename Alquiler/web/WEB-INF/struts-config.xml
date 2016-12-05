@@ -7,13 +7,13 @@
 
 <struts-config>
     <form-beans>
-        <form-bean name="ActualizarRutForm" type="presentacion.ActualizarRutForm"/>
-        <form-bean name="BuscarRutForm" type="presentacion.BuscarRutForm"/>
-        <form-bean name="GrabarRutForm" type="presentacion.GrabarRutForm"/>
-        <form-bean name="ActualizarVehForm" type="presentacion.ActualizarVehForm"/>
-        <form-bean name="BuscarVehForm" type="presentacion.BuscarVehForm"/>
-        <form-bean name="GrabarVehForm" type="presentacion.GrabarVehForm"/>
-        <form-bean name="ActualizarEmpForm" type="presentacion.ActualizarEmpForm"/>
+        <form-bean name="AgregarRutaForm" type="presentacion.AgregarRutaForm"/>
+        <form-bean name="BuscarRutaForm" type="presentacion.BuscarRutaForm"/>
+        <form-bean name="BuscarVehiculoForm" type="presentacion.BuscarVehiculoForm"/>
+        <form-bean name="AgregarVehiculoForm" type="presentacion.AgregarVehiculoForm"/>
+        <form-bean name="NuevoAlquilerForm" type="presentacion.NuevoAlquilerForm"/>
+        <form-bean name="AgregarEmpForm" type="presentacion.AgregarEmpForm"/>
+        <form-bean name="GrabarAlquilerForm" type="presentacion.GrabarAlquilerForm"/>
         <form-bean name="BuscarEmpForm" type="presentacion.BuscarEmpForm"/>
         <form-bean name="GrabarEmpForm" type="presentacion.GrabarEmpForm"/>
     
@@ -28,37 +28,31 @@
     </global-forwards>
 
     <action-mappings>
-        <action input="/Empleado.jsp" name="GrabarEmpForm" path="/GrabarEmpAction" scope="request" type="presentacion.GrabarEmpAction">
-            <forward name="Mensaje" path="/Mensaje.jsp"/>
+        <action input="/GrabarEmpleado.jsp" name="GrabarEmpForm" path="/GrabarEmpAction" scope="request" type="presentacion.GrabarEmpAction">
+            <forward name="Mensaje" path="/Mensaje.jsp" redirect="true"/>
         </action>
-        <action input="/Empleado.jsp" name="BuscarEmpForm" path="/BuscarEmpAction" scope="request" type="presentacion.BuscarEmpAction">
-            <forward name="Actualizar" path="/Empleado.jsp"/>
-            <forward name="Mensaje" path="/Mensaje.jsp"/>
+        <action input="/Alquiler.jsp" name="GrabarAlquilerForm" path="/GrabarAlquilerAction" scope="request" type="presentacion.GrabarAlquilerAction">
+            <forward name="Mensaje" path="/Mensaje.jsp" redirect="true"/>
+            <forward name="Alquiler" path="/Alquiler.jsp" redirect="true"/>
         </action>
-        <action input="/Empleado.jsp" name="ActualizarEmpForm" path="/ActualizarEmpAction" scope="request" type="presentacion.ActualizarEmpAction">
-            <forward name="Mensaje" path="/Mensaje.jsp"/>
+        <action input="/home.jsp" name="NuevoAlquilerForm" path="/NuevoAlquilerAction" scope="request" type="presentacion.NuevoAlquilerAction">
+            <forward name="Alquiler" path="/Alquiler.jsp" redirect="true"/>
+            <forward name="Mensaje" path="/Mensaje.jsp" redirect="true"/>
         </action>
-        <action input="/Vehiculo.jsp" name="BuscarVehForm" path="/BuscarVehAction" scope="request" type="presentacion.BuscarVehAction">
-            <forward name="Actualizar" path="/Vehiculo.jsp"/>
-            <forward name="Mensaje" path="/Mensaje.jsp"/>
+        <action input="/Alquiler.jsp" name="BuscarVehiculoForm" path="/BuscarVehiculoAction" scope="request" type="presentacion.BuscarVehiculoAction">
+            <forward name="Listar" path="/BuscarVehiculo.jsp" redirect="true"/>
+        </action>
+        <action input="/BuscarVehiculo.jsp" name="AgregarVehiculoForm" path="/AgregarVehiculoAction" scope="request" type="presentacion.AgregarVehiculoAction">
+            <forward name="Alquilar" path="/Alquiler.jsp" redirect="true"/>
+        </action>
+        <action input="/Alquiler.jsp" name="BuscarRutaForm" path="/BuscarRutaAction" scope="request" type="presentacion.BuscarRutaAction">
+            <forward name="Listar" path="/BuscarRuta.jsp" redirect="true"/>
+        </action>
+        <action input="/Alquiler.jsp" name="AgregarRutaForm" path="/AgregarRutaAction" scope="request" type="presentacion.AgregarRutaAction">
+            <forward name="Alquilar" path="/Alquiler.jsp" redirect="true"/>
+        </action>
             
-        </action>
-        <action input="/Vehiculo.jsp" name="GrabarVehForm" path="/GrabarVehAction" scope="request" type="presentacion.GrabarVehAction">
-            <forward name="Mensaje" path="/Mensaje.jsp"/>
-        </action>
-        <action input="/Vehiculo.jsp" name="ActualizarVehForm" path="/ActualizarVehAction" scope="request" type="presentacion.ActualizarVehAction">
-            <forward name="Mensaje" path="/Mensaje.jsp"/>
-        </action>
-        <action input="/Ruta.jsp" name="ActualizarRutForm" path="/ActualizarRutAction" scope="request" type="presentacion.ActualizarRutAction">
-            <forward name="Mensaje" path="/Mensaje.jsp"/>
-        </action>
-        <action input="/Ruta.jsp" name="BuscarRutForm" path="/BuscarRutAction" scope="request" type="presentacion.BuscarRutAction">
-            <forward name="Mensaje" path="/Mensaje.jsp"/>
-            <forward name="Actualizar" path="/Ruta.jsp"/>
-        </action>
-        <action input="/Ruta.jsp" name="GrabarRutForm" path="/GrabarRutAction" scope="request" type="presentacion.GrabarRutAction">
-            <forward name="Mensaje" path="/Mensaje.jsp"/>
-        </action>
+        <action input="/BuscarEmpleado.jsp" name="AgregarEmpForm" path="/AgregarEmpAction" scope="request" type="presentacion.AgregarEmpAction"/>
         <action path="/Welcome" forward="/welcomeStruts.jsp"/>
     </action-mappings>
     

@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="x" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,20 +14,6 @@
         </div>
         <!-- FIN TITULO PÁGINA -->
         <!-- CUERPO DE LA PÁGINA -->
-        <div class="">
-            <div class="page-title">
-                <div class="title_left">
-                    <h3>Vehiculo</h3>
-                </div>
-
-                <div class="title_right">
-                    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-
-                    </div>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
@@ -37,97 +24,88 @@
                         </div>
                         <div class="x_content">
 
-                            <form class="form-horizontal form-label-left" novalidate>
+                            <x:form action="/GrabarEmpAction" styleClass="form-horizontal form-label-left">
 
                                 <span class="section">Datos Empleado</span>
 
                                 <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="codEmp">Codigo <span class="required">*</span>
                                     </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" class="optional form-control col-md-7 col-xs-12">
+                                    <div class="col-md-2 col-sm-2 col-xs-4">
+                                        <x:text property="codEmp" styleClass="form-control col-md-7 col-xs-12" />
                                     </div>
                                 </div>
                                 <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre <span class="required">*</span>
                                     </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="both name(s) e.g Jon Doe" required="required" type="text">
+                                    <div class="col-md-4 col-sm-4 col-xs-8">
+                                        <x:text property="nomEmp" styleClass="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
 
                                 <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Apellido <span class="required">*</span>
                                     </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input id="occupation" type="text" name="occupation" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+                                    <div class="col-md-4 col-sm-4 col-xs-8">
+                                        <x:text property="apeEmp" styleClass="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="direccion">Direccion <span class="required">*</span>
                                     </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input id="direccion" type="text" name="direccion" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+                                    <div class="col-md-4 col-sm-4 col-xs-8">
+                                        <x:text property="dirEmp" styleClass="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
 
                                 <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dni">DNI <span class="required">*</span>
                                     </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input id="occupation" type="text" name="occupation" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+                                    <div class="col-md-4 col-sm-4 col-xs-8">
+                                        <x:text property="dniEmp" styleClass="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="licencia">Lic. Conducir <span class="required">*</span>
                                     </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input id="occupation" type="text" name="occupation" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+                                    <div class="col-md-4 col-sm-4 col-xs-8">
+                                        <x:text property="licCon" styleClass="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>                                
                                 <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">Telefono <span class="required">*</span>
                                     </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="tel" id="telephone" name="phone" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
+                                    <div class="col-md-4 col-sm-4 col-xs-8">
+                                        <x:text property="telEmp" styleClass="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>                             
                                 <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">Seguro <span class="required">*</span>
                                     </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="tel" id="telephone" name="phone" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
+                                    <div class="col-md-4 col-sm-4 col-xs-8">
+                                        <x:text property="seguroEmp" styleClass="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>  
                                 <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email <span class="required">*</span>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email 
                                     </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="email" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12">
+                                    <div class="col-md-4 col-sm-4 col-xs-8">
+                                        <x:text property="emailEmp" styleClass="form-control col-md-7 col-xs-12"/>
                                     </div>
-                                </div>
-                                <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Confirmar Email <span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="email" id="email2" name="confirm_email" data-validate-linked="email" required="required" class="form-control col-md-7 col-xs-12">
-                                    </div>
-                                </div>
-                                
+                                </div>                                
 
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-3">
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
-                                        
-                                    </div>
+                                        <x:submit styleClass="btn btn-primary" value="Grabar"/>
+                                        <x:submit styleClass="btn btn-success" value="Cancelar" property="Cancelar"/>
+                                    </div>                                    
                                 </div>
-                            </form>
+                            </x:form>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         <!-- FIN CUERPO DE LA PÁGINA-->
 
         <%@ include file="styls/plantilla-part03.jsp" %>

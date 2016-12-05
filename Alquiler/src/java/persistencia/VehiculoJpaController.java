@@ -15,13 +15,12 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import persistencia.exceptions.IllegalOrphanException;
 import persistencia.exceptions.NonexistentEntityException;
 import persistencia.exceptions.PreexistingEntityException;
 
 /**
  *
- * @author Miriam
+ * @author edd
  */
 public class VehiculoJpaController implements Serializable {
 
@@ -30,13 +29,12 @@ public class VehiculoJpaController implements Serializable {
     }
     private EntityManagerFactory emf = null;
 
-    public VehiculoJpaController() {
-        emf=Persistence.createEntityManagerFactory("AlquilerEmpPU");
-    }
-    
-
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
+    }
+
+    public VehiculoJpaController() {
+        this.emf = Persistence.createEntityManagerFactory("AlquilerEmpPU");
     }
 
     public void create(Vehiculo vehiculo) throws PreexistingEntityException, Exception {
@@ -47,6 +45,11 @@ public class VehiculoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Empleado codemp = vehiculo.getCodemp();
+            if (codemp != null) {
+                codemp = em.getReference(codemp.getClass(), codemp.getCodemp());
+                vehiculo.setCodemp(codemp);
+            }
             List<Alquiler> attachedAlquilerList = new ArrayList<Alquiler>();
             for (Alquiler alquilerListAlquilerToAttach : vehiculo.getAlquilerList()) {
                 alquilerListAlquilerToAttach = em.getReference(alquilerListAlquilerToAttach.getClass(), alquilerListAlquilerToAttach.getNumalq());
@@ -54,6 +57,10 @@ public class VehiculoJpaController implements Serializable {
             }
             vehiculo.setAlquilerList(attachedAlquilerList);
             em.persist(vehiculo);
+            if (codemp != null) {
+                codemp.getVehiculoList().add(vehiculo);
+                codemp = em.merge(codemp);
+            }
             for (Alquiler alquilerListAlquiler : vehiculo.getAlquilerList()) {
                 Vehiculo oldCodvehOfAlquilerListAlquiler = alquilerListAlquiler.getCodveh();
                 alquilerListAlquiler.setCodveh(vehiculo);
@@ -76,25 +83,19 @@ public class VehiculoJpaController implements Serializable {
         }
     }
 
-    public void edit(Vehiculo vehiculo) throws IllegalOrphanException, NonexistentEntityException, Exception {
+    public void edit(Vehiculo vehiculo) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
             Vehiculo persistentVehiculo = em.find(Vehiculo.class, vehiculo.getCodveh());
+            Empleado codempOld = persistentVehiculo.getCodemp();
+            Empleado codempNew = vehiculo.getCodemp();
             List<Alquiler> alquilerListOld = persistentVehiculo.getAlquilerList();
             List<Alquiler> alquilerListNew = vehiculo.getAlquilerList();
-            List<String> illegalOrphanMessages = null;
-            for (Alquiler alquilerListOldAlquiler : alquilerListOld) {
-                if (!alquilerListNew.contains(alquilerListOldAlquiler)) {
-                    if (illegalOrphanMessages == null) {
-                        illegalOrphanMessages = new ArrayList<String>();
-                    }
-                    illegalOrphanMessages.add("You must retain Alquiler " + alquilerListOldAlquiler + " since its codveh field is not nullable.");
-                }
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
+            if (codempNew != null) {
+                codempNew = em.getReference(codempNew.getClass(), codempNew.getCodemp());
+                vehiculo.setCodemp(codempNew);
             }
             List<Alquiler> attachedAlquilerListNew = new ArrayList<Alquiler>();
             for (Alquiler alquilerListNewAlquilerToAttach : alquilerListNew) {
@@ -104,6 +105,20 @@ public class VehiculoJpaController implements Serializable {
             alquilerListNew = attachedAlquilerListNew;
             vehiculo.setAlquilerList(alquilerListNew);
             vehiculo = em.merge(vehiculo);
+            if (codempOld != null && !codempOld.equals(codempNew)) {
+                codempOld.getVehiculoList().remove(vehiculo);
+                codempOld = em.merge(codempOld);
+            }
+            if (codempNew != null && !codempNew.equals(codempOld)) {
+                codempNew.getVehiculoList().add(vehiculo);
+                codempNew = em.merge(codempNew);
+            }
+            for (Alquiler alquilerListOldAlquiler : alquilerListOld) {
+                if (!alquilerListNew.contains(alquilerListOldAlquiler)) {
+                    alquilerListOldAlquiler.setCodveh(null);
+                    alquilerListOldAlquiler = em.merge(alquilerListOldAlquiler);
+                }
+            }
             for (Alquiler alquilerListNewAlquiler : alquilerListNew) {
                 if (!alquilerListOld.contains(alquilerListNewAlquiler)) {
                     Vehiculo oldCodvehOfAlquilerListNewAlquiler = alquilerListNewAlquiler.getCodveh();
@@ -132,7 +147,7 @@ public class VehiculoJpaController implements Serializable {
         }
     }
 
-    public void destroy(String id) throws IllegalOrphanException, NonexistentEntityException {
+    public void destroy(String id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -144,16 +159,15 @@ public class VehiculoJpaController implements Serializable {
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The vehiculo with id " + id + " no longer exists.", enfe);
             }
-            List<String> illegalOrphanMessages = null;
-            List<Alquiler> alquilerListOrphanCheck = vehiculo.getAlquilerList();
-            for (Alquiler alquilerListOrphanCheckAlquiler : alquilerListOrphanCheck) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("This Vehiculo (" + vehiculo + ") cannot be destroyed since the Alquiler " + alquilerListOrphanCheckAlquiler + " in its alquilerList field has a non-nullable codveh field.");
+            Empleado codemp = vehiculo.getCodemp();
+            if (codemp != null) {
+                codemp.getVehiculoList().remove(vehiculo);
+                codemp = em.merge(codemp);
             }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
+            List<Alquiler> alquilerList = vehiculo.getAlquilerList();
+            for (Alquiler alquilerListAlquiler : alquilerList) {
+                alquilerListAlquiler.setCodveh(null);
+                alquilerListAlquiler = em.merge(alquilerListAlquiler);
             }
             em.remove(vehiculo);
             em.getTransaction().commit();

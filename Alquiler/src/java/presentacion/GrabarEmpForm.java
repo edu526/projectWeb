@@ -93,9 +93,12 @@ public class GrabarEmpForm extends org.apache.struts.action.ActionForm {
     
     public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) {
         ActionErrors errors = new ActionErrors();
-        if (getCodEmp()== null || getCodEmp().length() < 1) {
+        if (getCodEmp()== null || getCodEmp().length() < 1 || getNomEmp()== null || getNomEmp().length() < 1
+                || getApeEmp()== null || getApeEmp().length() < 1 || getDirEmp()== null || getDirEmp().length() < 1
+                || getDniEmp()== null || getDniEmp().length() < 1 || getLicCon()== null || getLicCon().length() < 1
+                || getTelEmp()== null || getTelEmp().length() < 1 || getSeguroEmp()== null || getSeguroEmp().length() < 1) {
             errors.add("name", new ActionMessage("error.name.required"));
-            // TODO: add 'error.name.required' key to your resources
+            
         }
         return errors;
     }

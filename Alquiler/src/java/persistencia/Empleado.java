@@ -8,7 +8,6 @@ package persistencia;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -21,22 +20,22 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Miriam
+ * @author edd
  */
 @Entity
 @Table(name = "EMPLEADO")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Empleado.findAll", query = "SELECT e FROM Empleado e"),
-    @NamedQuery(name = "Empleado.findByCodemp", query = "SELECT e FROM Empleado e WHERE e.codemp = :codemp"),
-    @NamedQuery(name = "Empleado.findByNomemp", query = "SELECT e FROM Empleado e WHERE e.nomemp = :nomemp"),
-    @NamedQuery(name = "Empleado.findByApeemp", query = "SELECT e FROM Empleado e WHERE e.apeemp = :apeemp"),
-    @NamedQuery(name = "Empleado.findByDiremp", query = "SELECT e FROM Empleado e WHERE e.diremp = :diremp"),
-    @NamedQuery(name = "Empleado.findByDniemp", query = "SELECT e FROM Empleado e WHERE e.dniemp = :dniemp"),
-    @NamedQuery(name = "Empleado.findByLiccon", query = "SELECT e FROM Empleado e WHERE e.liccon = :liccon"),
-    @NamedQuery(name = "Empleado.findByTelemp", query = "SELECT e FROM Empleado e WHERE e.telemp = :telemp"),
-    @NamedQuery(name = "Empleado.findBySeguroemp", query = "SELECT e FROM Empleado e WHERE e.seguroemp = :seguroemp"),
-    @NamedQuery(name = "Empleado.findByEmailemp", query = "SELECT e FROM Empleado e WHERE e.emailemp = :emailemp")})
+    @NamedQuery(name = "Empleado.findAll", query = "SELECT e FROM Empleado e")
+    , @NamedQuery(name = "Empleado.findByCodemp", query = "SELECT e FROM Empleado e WHERE e.codemp = :codemp")
+    , @NamedQuery(name = "Empleado.findByNomemp", query = "SELECT e FROM Empleado e WHERE e.nomemp = :nomemp")
+    , @NamedQuery(name = "Empleado.findByApeemp", query = "SELECT e FROM Empleado e WHERE e.apeemp = :apeemp")
+    , @NamedQuery(name = "Empleado.findByDiremp", query = "SELECT e FROM Empleado e WHERE e.diremp = :diremp")
+    , @NamedQuery(name = "Empleado.findByDniemp", query = "SELECT e FROM Empleado e WHERE e.dniemp = :dniemp")
+    , @NamedQuery(name = "Empleado.findByLiccon", query = "SELECT e FROM Empleado e WHERE e.liccon = :liccon")
+    , @NamedQuery(name = "Empleado.findByTelemp", query = "SELECT e FROM Empleado e WHERE e.telemp = :telemp")
+    , @NamedQuery(name = "Empleado.findBySeguroemp", query = "SELECT e FROM Empleado e WHERE e.seguroemp = :seguroemp")
+    , @NamedQuery(name = "Empleado.findByEmailemp", query = "SELECT e FROM Empleado e WHERE e.emailemp = :emailemp")})
 public class Empleado implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,50 +43,32 @@ public class Empleado implements Serializable {
     @Basic(optional = false)
     @Column(name = "CODEMP")
     private String codemp;
-    @Basic(optional = false)
     @Column(name = "NOMEMP")
     private String nomemp;
-    @Basic(optional = false)
     @Column(name = "APEEMP")
     private String apeemp;
-    @Basic(optional = false)
     @Column(name = "DIREMP")
     private String diremp;
-    @Basic(optional = false)
     @Column(name = "DNIEMP")
     private String dniemp;
-    @Basic(optional = false)
     @Column(name = "LICCON")
     private String liccon;
-    @Basic(optional = false)
     @Column(name = "TELEMP")
     private String telemp;
-    @Basic(optional = false)
     @Column(name = "SEGUROEMP")
     private String seguroemp;
-    @Basic(optional = false)
     @Column(name = "EMAILEMP")
     private String emailemp;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codemp")
+    @OneToMany(mappedBy = "codemp")
     private List<Alquiler> alquilerList;
+    @OneToMany(mappedBy = "codemp")
+    private List<Vehiculo> vehiculoList;
 
     public Empleado() {
     }
 
     public Empleado(String codemp) {
         this.codemp = codemp;
-    }
-
-    public Empleado(String codemp, String nomemp, String apeemp, String diremp, String dniemp, String liccon, String telemp, String seguroemp, String emailemp) {
-        this.codemp = codemp;
-        this.nomemp = nomemp;
-        this.apeemp = apeemp;
-        this.diremp = diremp;
-        this.dniemp = dniemp;
-        this.liccon = liccon;
-        this.telemp = telemp;
-        this.seguroemp = seguroemp;
-        this.emailemp = emailemp;
     }
 
     public String getCodemp() {
@@ -169,6 +150,15 @@ public class Empleado implements Serializable {
 
     public void setAlquilerList(List<Alquiler> alquilerList) {
         this.alquilerList = alquilerList;
+    }
+
+    @XmlTransient
+    public List<Vehiculo> getVehiculoList() {
+        return vehiculoList;
+    }
+
+    public void setVehiculoList(List<Vehiculo> vehiculoList) {
+        this.vehiculoList = vehiculoList;
     }
 
     @Override

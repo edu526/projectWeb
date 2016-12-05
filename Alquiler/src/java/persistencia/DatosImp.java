@@ -5,11 +5,14 @@
  */
 package persistencia;
 
+import java.util.List;
+
 /**
  *
- * @author Miriam
+ * @author edd
  */
 public class DatosImp implements Datos {
+
     private Alquiler alq;
     private AlquilerJpaController alqCon;
     private Empleado emp;
@@ -66,14 +69,13 @@ public class DatosImp implements Datos {
         this.vehCon = vehCon;
     }
 
-    
     @Override
     public String grabarEmp(String codEmp, String nomEmp, String apeEmp, String dirEmp, String dniEmp, String licCon, String telEmp, String seguroEmp, String emailEmp) {
         emp.setCodemp(codEmp);
         emp.setNomemp(nomEmp);
         emp.setApeemp(apeEmp);
         emp.setDiremp(dirEmp);
-        emp.setDniemp(dirEmp);
+        emp.setDniemp(dniEmp);
         emp.setLiccon(licCon);
         emp.setTelemp(telEmp);
         emp.setSeguroemp(seguroEmp);
@@ -81,16 +83,17 @@ public class DatosImp implements Datos {
         try {
             empCon.create(emp);
         } catch (Exception e) {
-        return e.getMessage();
-        } return "Empleado Grabado Correctamente";
-        
+            return e.getMessage();
+        }
+        return "Empleado Grabado Correctamente";
+
     }
 
     @Override
     public Empleado buscarEmp(String codEmp) {
-      
-          return  empCon.findEmpleado(codEmp);
-    
+
+        return empCon.findEmpleado(codEmp);
+
     }
 
     @Override
@@ -99,7 +102,7 @@ public class DatosImp implements Datos {
         emp.setNomemp(nomEmp);
         emp.setApeemp(apeEmp);
         emp.setDiremp(dirEmp);
-        emp.setDniemp(dirEmp);
+        emp.setDniemp(dniEmp);
         emp.setLiccon(licCon);
         emp.setTelemp(telEmp);
         emp.setSeguroemp(seguroEmp);
@@ -108,12 +111,14 @@ public class DatosImp implements Datos {
             empCon.edit(emp);
         } catch (Exception e) {
             return e.getMessage();
-        } return "Datos Actualizados! Empleado "+" "+nomEmp+"";
+        }
+        return "Datos Actualizados! Empleado " + " " + nomEmp + "";
     }
 
     @Override
-    public String grabarVeh(String codVeh, String matricuVeh, String modelVeh, String motorVeh, String serieVeh, String anioVeh, String estadVeh, String tipoVeh, double precVeh) {
+    public String grabarVeh(String codVeh, String NFlota, String matricuVeh, String modelVeh, String motorVeh, String serieVeh, String anioVeh, String estadVeh, String tipoVeh, double precVeh, String codEmp) {
         veh.setCodveh(codVeh);
+        veh.setNflota(NFlota);
         veh.setMatricuveh(matricuVeh);
         veh.setModelveh(modelVeh);
         veh.setMotorveh(motorVeh);
@@ -122,11 +127,13 @@ public class DatosImp implements Datos {
         veh.setEstadveh(estadVeh);
         veh.setTipoveh(tipoVeh);
         veh.setPrecveh(precVeh);
+        veh.setCodemp(emp);
         try {
             vehCon.create(veh);
         } catch (Exception e) {
             return e.getMessage();
-        } return "Vehiculo Registrado!";
+        }
+        return "Vehiculo Registrado!";
     }
 
     @Override
@@ -135,9 +142,9 @@ public class DatosImp implements Datos {
     }
 
     @Override
-    public String actualizarVeh(String codVeh, String matricuVeh, String modelVeh, String motorVeh, String serieVeh, String anioVeh, String estadVeh, String tipoVeh, double precVeh) {
-        
-            veh.setCodveh(codVeh);
+    public String actualizarVeh(String codVeh, String NFlota, String matricuVeh, String modelVeh, String motorVeh, String serieVeh, String anioVeh, String estadVeh, String tipoVeh, double precVeh, String codEmp) {
+        veh.setCodveh(codVeh);
+        veh.setNflota(NFlota);
         veh.setMatricuveh(matricuVeh);
         veh.setModelveh(modelVeh);
         veh.setMotorveh(motorVeh);
@@ -146,25 +153,26 @@ public class DatosImp implements Datos {
         veh.setEstadveh(estadVeh);
         veh.setTipoveh(tipoVeh);
         veh.setPrecveh(precVeh);
+        veh.setCodemp(emp);
         try {
             vehCon.edit(veh);
         } catch (Exception e) {
             return e.getMessage();
-        } return "Vehiculo Actualizado!";
+        }
+        return "Vehiculo Actualizado!";
     }
 
     @Override
-    public String grabarRut(String codRut, String origRut, String destRut, String paradAut, double precRut) {
+    public String grabarRut(String codRut, String paradAut, double precRut) {
         rut.setCodrut(codRut);
-        rut.setOrigrut(origRut);
-        rut.setDestrut(destRut);
         rut.setParadaut(paradAut);
         rut.setPrecrut(precRut);
         try {
             rutCon.create(rut);
         } catch (Exception e) {
             e.getMessage();
-        } return "Ruta Grabada";
+        }
+        return "Ruta Grabada";
     }
 
     @Override
@@ -173,21 +181,69 @@ public class DatosImp implements Datos {
     }
 
     @Override
-    public String actualizarRut(String codRut, String origRut, String destRut, String paradAut, double precRut) {
-                rut.setCodrut(codRut);
-        rut.setOrigrut(origRut);
-        rut.setDestrut(destRut);
+    public String actualizarRut(String codRut, String paradAut, double precRut) {
+        rut.setCodrut(codRut);
         rut.setParadaut(paradAut);
         rut.setPrecrut(precRut);
         try {
             rutCon.edit(rut);
         } catch (Exception e) {
             e.getMessage();
-        } return "Ruta Actualizada";
-    
+        }
+        return "Ruta Actualizada";
+
     }
 
+    @Override
+    public boolean grabarAlquiler(String numAlq, String fecAlq, String estadAlq, String codEmp, String codVeh, double tot, double desct) {
+        alq.setNumalq(numAlq);
+        alq.setFecalq(fecAlq);
+        alq.setEstadalq(estadAlq);
+        alq.setCodemp(emp);
+        alq.setCodveh(veh);
+        alq.setTot(tot);
+        alq.setDesct(desct);
+        try {
+            alqCon.create(alq);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
 
-    
-    
+    @Override
+    public String grabarDetalle(String numAlq, String codRut) {
+        lin.setAlquiler(alqCon.findAlquiler(numAlq));
+        lin.setRuta(rutCon.findRuta(codRut));
+        linPK.setNumalq(numAlq);
+        linPK.setCodrut(codRut);
+        lin.setLineaAlquilerPK(linPK);
+        try {
+            linCon.create(lin);
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+        return "Alquiler Grabado";
+    }
+
+    @Override
+    public List listarEmp() {
+        return empCon.findEmpleadoEntities();
+    }
+
+    @Override
+    public int getNumAlq() {
+        return alqCon.getAlquilerCount();
+    }
+
+    @Override
+    public List listarRutas() {
+        return rutCon.findRutaEntities();
+    }
+
+    @Override
+    public List listarVehiculos() {
+        return vehCon.findVehiculoEntities();
+    }
+
 }

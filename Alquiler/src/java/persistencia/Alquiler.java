@@ -6,7 +6,6 @@
 package persistencia;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -19,25 +18,23 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Miriam
+ * @author edd
  */
 @Entity
 @Table(name = "ALQUILER")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Alquiler.findAll", query = "SELECT a FROM Alquiler a"),
-    @NamedQuery(name = "Alquiler.findByNumalq", query = "SELECT a FROM Alquiler a WHERE a.numalq = :numalq"),
-    @NamedQuery(name = "Alquiler.findByFecdev", query = "SELECT a FROM Alquiler a WHERE a.fecdev = :fecdev"),
-    @NamedQuery(name = "Alquiler.findByFecent", query = "SELECT a FROM Alquiler a WHERE a.fecent = :fecent"),
-    @NamedQuery(name = "Alquiler.findByEstadalq", query = "SELECT a FROM Alquiler a WHERE a.estadalq = :estadalq"),
-    @NamedQuery(name = "Alquiler.findByMontoalq", query = "SELECT a FROM Alquiler a WHERE a.montoalq = :montoalq")})
+    @NamedQuery(name = "Alquiler.findAll", query = "SELECT a FROM Alquiler a")
+    , @NamedQuery(name = "Alquiler.findByNumalq", query = "SELECT a FROM Alquiler a WHERE a.numalq = :numalq")
+    , @NamedQuery(name = "Alquiler.findByFecalq", query = "SELECT a FROM Alquiler a WHERE a.fecalq = :fecalq")
+    , @NamedQuery(name = "Alquiler.findByEstadalq", query = "SELECT a FROM Alquiler a WHERE a.estadalq = :estadalq")
+    , @NamedQuery(name = "Alquiler.findByTot", query = "SELECT a FROM Alquiler a WHERE a.tot = :tot")
+    , @NamedQuery(name = "Alquiler.findByDesct", query = "SELECT a FROM Alquiler a WHERE a.desct = :desct")})
 public class Alquiler implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,25 +42,20 @@ public class Alquiler implements Serializable {
     @Basic(optional = false)
     @Column(name = "NUMALQ")
     private String numalq;
-    @Basic(optional = false)
-    @Column(name = "FECDEV")
-    @Temporal(TemporalType.DATE)
-    private Date fecdev;
-    @Basic(optional = false)
-    @Column(name = "FECENT")
-    @Temporal(TemporalType.DATE)
-    private Date fecent;
-    @Basic(optional = false)
+    @Column(name = "FECALQ")
+    private String fecalq;
     @Column(name = "ESTADALQ")
     private String estadalq;
-    @Basic(optional = false)
-    @Column(name = "MONTOALQ")
-    private double montoalq;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "TOT")
+    private Double tot;
+    @Column(name = "DESCT")
+    private Double desct;
     @JoinColumn(name = "CODEMP", referencedColumnName = "CODEMP")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Empleado codemp;
     @JoinColumn(name = "CODVEH", referencedColumnName = "CODVEH")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Vehiculo codveh;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "alquiler")
     private List<LineaAlquiler> lineaAlquilerList;
@@ -75,14 +67,6 @@ public class Alquiler implements Serializable {
         this.numalq = numalq;
     }
 
-    public Alquiler(String numalq, Date fecdev, Date fecent, String estadalq, double montoalq) {
-        this.numalq = numalq;
-        this.fecdev = fecdev;
-        this.fecent = fecent;
-        this.estadalq = estadalq;
-        this.montoalq = montoalq;
-    }
-
     public String getNumalq() {
         return numalq;
     }
@@ -91,20 +75,12 @@ public class Alquiler implements Serializable {
         this.numalq = numalq;
     }
 
-    public Date getFecdev() {
-        return fecdev;
+    public String getFecalq() {
+        return fecalq;
     }
 
-    public void setFecdev(Date fecdev) {
-        this.fecdev = fecdev;
-    }
-
-    public Date getFecent() {
-        return fecent;
-    }
-
-    public void setFecent(Date fecent) {
-        this.fecent = fecent;
+    public void setFecalq(String fecalq) {
+        this.fecalq = fecalq;
     }
 
     public String getEstadalq() {
@@ -115,12 +91,20 @@ public class Alquiler implements Serializable {
         this.estadalq = estadalq;
     }
 
-    public double getMontoalq() {
-        return montoalq;
+    public Double getTot() {
+        return tot;
     }
 
-    public void setMontoalq(double montoalq) {
-        this.montoalq = montoalq;
+    public void setTot(Double tot) {
+        this.tot = tot;
+    }
+
+    public Double getDesct() {
+        return desct;
+    }
+
+    public void setDesct(Double desct) {
+        this.desct = desct;
     }
 
     public Empleado getCodemp() {

@@ -4,7 +4,21 @@ public class VehiculoObj {
     
     private String codVeh, NFlota, matricuVeh, modelVeh, motorVeh, serieVeh, anioVeh, estadVeh, tipoVeh;
     private double precVeh;
-    private VehiculoObj codEmp;
+    private EmpleadoObj codEmp;
+
+    public VehiculoObj() {
+        this.codVeh = " ";
+        this.NFlota = " ";
+        this.matricuVeh = " ";
+        this.modelVeh = " ";
+        this.motorVeh = " ";
+        this.serieVeh = " ";
+        this.anioVeh = " ";
+        this.estadVeh = " ";
+        this.tipoVeh = " ";
+        this.precVeh = 0.00;
+        this.codEmp = new EmpleadoObj();
+    }
 
     public String getCodVeh() {
         return codVeh;
@@ -78,11 +92,11 @@ public class VehiculoObj {
         this.tipoVeh = tipoVeh;
     }
 
-    public VehiculoObj getCodEmp() {
+    public EmpleadoObj getCodEmp() {
         return codEmp;
     }
 
-    public void setCodEmp(VehiculoObj codEmp) {
+    public void setCodEmp(EmpleadoObj codEmp) {
         this.codEmp = codEmp;
     }
 

@@ -1,3 +1,5 @@
+<%@page import="persistencia.Vehiculo"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="x" %>
 
@@ -8,6 +10,7 @@
         <%@ include file="styls/plantilla-list-part01.jsp" %>
     </head>
     <body>
+        <% List<Vehiculo> veh = (List) session.getAttribute("vehList");%>
         <!-- MENU -->
         <%@ include file="styls/plantilla-part02.jsp" %>
         <!-- FIN MENU -->
@@ -17,49 +20,37 @@
         </div>
         <!-- FIN TITULO PÁGINA -->        
         <!-- CUERPO DE LA PÁGINA -->
-        <div class="row">
+        
 
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2>Buscar Vehiculo </h2>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-
-                        <table id="datatable-buttons" class="table table-striped table-bordered">
+                        <table>
                             <thead>
                                 <tr>
                                     <th>Cod</th>
                                     <th>NºFlota</th>
-                                    <th>Empleado</th>
-                                    <th>Estado</th>
+                                    <th>Dueño</th>
                                     <th>Modelo</th>
+                                    <th>Precio</th>
                                     <th>       </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <% for (int i = 0; i < 5; i++) {
+                                <% for (Vehiculo v: veh) {
                                 %>
                                 
-                                <x:form action="/ActualizarVehAction">
+                                <x:form action="/AgregarVehiculoAction">
                                 <tr>
-                                    <td><x:text property="cod" value='<%= "Hola" %>' readonly="true"/></td>
-                                    <td><%= "Hola" %></td>
-                                    <td><%= "Hola" %></td>
-                                    <td><%= "Hola" %></td>
-                                    <td><%= "Hola" %></td>
+                                    <td><x:text property="cod" value='<%= v.getCodveh()%>' readonly="true"/></td>
+                                    <td><%= v.getNflota()%></td>
+                                    <td><%= v.getCodemp().getNomemp()+" "+ v.getCodemp().getApeemp()%></td>
+                                    <td><%= v.getModelveh()%></td>
+                                    <td><%= v.getPrecveh()+"" %></td>
                                                                        
-                                    <td><x:submit value="Modificar o Ver"/></td>
+                                    <td><x:submit value="Agregar"/></td>
                                 </tr>
                                 </x:form>
                                 <% }%>
                             </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+                        </table >
         <!-- FIN CUERPO DE LA PÁGINA form-->
 
         <%@ include file="styls/plantilla-list-part03.jsp" %>

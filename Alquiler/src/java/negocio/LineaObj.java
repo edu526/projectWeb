@@ -1,13 +1,13 @@
 
 package negocio;
 
-import java.util.Date;
+import persistencia.Alquiler;
+
 
 public class LineaObj {
     
     private String numAlq;
-    private RutaObj ruta;
-    private int dia;
+    private RutaObj codRut;
 
     public String getNumAlq() {
         return numAlq;
@@ -17,19 +17,14 @@ public class LineaObj {
         this.numAlq = numAlq;
     }
 
-    public RutaObj getRuta() {
-        return ruta;
+    public RutaObj getCodRut() {
+        return codRut;
     }
 
-    public void setRuta(RutaObj ruta) {
-        this.ruta = ruta;
+    public void setCodRut(RutaObj codRut) {
+        this.codRut = codRut;
     }
-
-    public double getTotal(){
-        return ruta.getPrecRut()*dia;
-    }
+     
     
-    public void setDia(int dia) {
-        this.dia = dia;
-    }
+    
 }

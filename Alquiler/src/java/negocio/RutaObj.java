@@ -6,6 +6,14 @@ public class RutaObj {
     private String codRut, paradAut;
     private double precRut;
 
+    public RutaObj() {
+        this.codRut = " ";
+        this.paradAut = " ";
+        this.precRut = 0.00;
+    }
+
+    
+    
     public String getCodRut() {
         return codRut;
     }

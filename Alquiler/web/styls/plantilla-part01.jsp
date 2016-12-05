@@ -9,9 +9,3 @@
   <link href="styls/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="styls/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <link href="styls/build/css/custom.min.css" rel="stylesheet">
-  <!-- Datatables -->
-  <link href="styls/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-  <link href="styls/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-  <link href="styls/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-  <link href="styls/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-  <link href="styls/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
