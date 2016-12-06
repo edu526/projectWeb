@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import persistencia.exceptions.NonexistentEntityException;
 import persistencia.exceptions.PreexistingEntityException;
 
@@ -31,10 +30,6 @@ public class VehiculoJpaController implements Serializable {
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
-    }
-
-    public VehiculoJpaController() {
-        this.emf = Persistence.createEntityManagerFactory("AlquilerEmpPU");
     }
 
     public void create(Vehiculo vehiculo) throws PreexistingEntityException, Exception {

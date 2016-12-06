@@ -5,6 +5,7 @@
  */
 package servicio;
 
+import javax.swing.JOptionPane;
 import negocio.AlquilerObj;
 import negocio.EmpleadoObj;
 import negocio.RutaObj;
@@ -35,6 +36,7 @@ public class ServicioImp implements Servicio {
 
     @Override
     public String grabar() {
+        JOptionPane.showMessageDialog(null, "Nivel Servicio "+alqObj.getNumAlq());
         boolean es = dat.grabarAlquiler(alqObj.getNumAlq(), 
                 alqObj.getFecAlq(), 
                 alqObj.getEstadAlq(), 

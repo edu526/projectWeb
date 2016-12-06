@@ -12,7 +12,6 @@ public class AlquilerObj {
 
     private LineaObj linObj;
     private String estadAlq;
-    private double desct;
     private EmpleadoObj codEmp;
     private VehiculoObj codVeh;
 
@@ -59,10 +58,6 @@ public class AlquilerObj {
 
     public double getDesct() {
         return getTotal()*0.05;
-    }
-
-    public void setDesct(double desct) {
-        this.desct = desct;
     }
 
     public EmpleadoObj getCodEmp() {

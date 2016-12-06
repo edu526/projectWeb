@@ -11,7 +11,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
-import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import persistencia.exceptions.NonexistentEntityException;
@@ -32,16 +31,12 @@ public class LineaAlquilerJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public LineaAlquilerJpaController() {
-        this.emf = Persistence.createEntityManagerFactory("AlquilerEmpPU");
-    }
-
     public void create(LineaAlquiler lineaAlquiler) throws PreexistingEntityException, Exception {
         if (lineaAlquiler.getLineaAlquilerPK() == null) {
             lineaAlquiler.setLineaAlquilerPK(new LineaAlquilerPK());
         }
-        lineaAlquiler.getLineaAlquilerPK().setCodrut(lineaAlquiler.getRuta().getCodrut());
         lineaAlquiler.getLineaAlquilerPK().setNumalq(lineaAlquiler.getAlquiler().getNumalq());
+        lineaAlquiler.getLineaAlquilerPK().setCodrut(lineaAlquiler.getRuta().getCodrut());
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -79,8 +74,8 @@ public class LineaAlquilerJpaController implements Serializable {
     }
 
     public void edit(LineaAlquiler lineaAlquiler) throws NonexistentEntityException, Exception {
-        lineaAlquiler.getLineaAlquilerPK().setCodrut(lineaAlquiler.getRuta().getCodrut());
         lineaAlquiler.getLineaAlquilerPK().setNumalq(lineaAlquiler.getAlquiler().getNumalq());
+        lineaAlquiler.getLineaAlquilerPK().setCodrut(lineaAlquiler.getRuta().getCodrut());
         EntityManager em = null;
         try {
             em = getEntityManager();

@@ -122,10 +122,10 @@
                                             <x:submit property="lisVeh" value="Buscar Vehículo"/>
                                         </x:form>
                                         <x:form action="/ListarRutaAction">
-                                            <x:submit  property="lisRut" value="Buscar Ruta" />
+                                            <x:submit property="lisRut" value="Buscar Ruta" />
                                         </x:form>
                                         <x:form action="/GrabarAlquilerAction">
-                                            <x:submit value="Grabar"/>
+                                            <x:submit property="gra" value="Grabar"/>
                                         </x:form>
                                     </div>
                                 </div>

@@ -23,13 +23,12 @@ public class GrabarAlquilerAction extends org.apache.struts.action.Action {
     public void setSer(Servicio ser) {
         this.ser = ser;
     }
-    
+
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        
-        
+
         request.getSession().setAttribute("msg", ser.grabar());
         return mapping.findForward("Mensaje");
     }

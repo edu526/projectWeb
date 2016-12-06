@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Alquiler.findByFecalq", query = "SELECT a FROM Alquiler a WHERE a.fecalq = :fecalq")
     , @NamedQuery(name = "Alquiler.findByEstadalq", query = "SELECT a FROM Alquiler a WHERE a.estadalq = :estadalq")
     , @NamedQuery(name = "Alquiler.findByTot", query = "SELECT a FROM Alquiler a WHERE a.tot = :tot")
+    , @NamedQuery(name = "Alquiler.findByHora", query = "SELECT a FROM Alquiler a WHERE a.hora = :hora")
     , @NamedQuery(name = "Alquiler.findByDesct", query = "SELECT a FROM Alquiler a WHERE a.desct = :desct")})
 public class Alquiler implements Serializable {
 
@@ -49,6 +50,8 @@ public class Alquiler implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "TOT")
     private Double tot;
+    @Column(name = "HORA")
+    private String hora;
     @Column(name = "DESCT")
     private Double desct;
     @JoinColumn(name = "CODEMP", referencedColumnName = "CODEMP")
@@ -97,6 +100,14 @@ public class Alquiler implements Serializable {
 
     public void setTot(Double tot) {
         this.tot = tot;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
     }
 
     public Double getDesct() {

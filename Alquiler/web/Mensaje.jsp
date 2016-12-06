@@ -17,7 +17,7 @@
         <%@ include file="styls/plantilla-part02.jsp" %>
         
         <!-- CUERPO DE LA PÁGINA -->
-        <input type="text" size="50" value="<%= (String)session.getAttribute("msg") %>" readonly="true"/>        
+        <input type="text" size="50" value="<%= (String)session.getAttribute("msg") %>" />        
         <!-- FIN CUERPO DE LA PÁGINA form-->
         
         <%@ include file="styls/plantilla-part03.jsp" %>

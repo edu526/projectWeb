@@ -27,17 +27,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "LineaAlquiler.findAll", query = "SELECT l FROM LineaAlquiler l")
     , @NamedQuery(name = "LineaAlquiler.findByNumalq", query = "SELECT l FROM LineaAlquiler l WHERE l.lineaAlquilerPK.numalq = :numalq")
     , @NamedQuery(name = "LineaAlquiler.findByCodrut", query = "SELECT l FROM LineaAlquiler l WHERE l.lineaAlquilerPK.codrut = :codrut")
-    , @NamedQuery(name = "LineaAlquiler.findByFecha", query = "SELECT l FROM LineaAlquiler l WHERE l.fecha = :fecha")
-    , @NamedQuery(name = "LineaAlquiler.findByHora", query = "SELECT l FROM LineaAlquiler l WHERE l.hora = :hora")})
+    , @NamedQuery(name = "LineaAlquiler.findByDia", query = "SELECT l FROM LineaAlquiler l WHERE l.dia = :dia")})
 public class LineaAlquiler implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected LineaAlquilerPK lineaAlquilerPK;
-    @Column(name = "FECHA")
-    private String fecha;
-    @Column(name = "HORA")
-    private String hora;
+    @Column(name = "DIA")
+    private String dia;
     @JoinColumn(name = "NUMALQ", referencedColumnName = "NUMALQ", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Alquiler alquiler;
@@ -64,20 +61,12 @@ public class LineaAlquiler implements Serializable {
         this.lineaAlquilerPK = lineaAlquilerPK;
     }
 
-    public String getFecha() {
-        return fecha;
+    public String getDia() {
+        return dia;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getHora() {
-        return hora;
-    }
-
-    public void setHora(String hora) {
-        this.hora = hora;
+    public void setDia(String dia) {
+        this.dia = dia;
     }
 
     public Alquiler getAlquiler() {

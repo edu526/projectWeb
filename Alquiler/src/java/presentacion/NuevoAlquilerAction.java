@@ -64,7 +64,7 @@ public class NuevoAlquilerAction extends org.apache.struts.action.Action {
             alqObj.setNumAlq(dat.getNumAlq());
             alqObj.setCodVeh(v);
             alqObj.setLinObj(r);
-            
+            alqObj.setEstadAlq("");
             
             request.getSession().setAttribute("alqObj", alqObj);
             return mapping.findForward("Alquiler");

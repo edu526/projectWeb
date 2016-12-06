@@ -6,6 +6,7 @@
 package persistencia;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -199,8 +200,8 @@ public class DatosImp implements Datos {
         alq.setNumalq(numAlq);
         alq.setFecalq(fecAlq);
         alq.setEstadalq(estadAlq);
-        alq.setCodemp(emp);
-        alq.setCodveh(veh);
+        alq.setCodemp(buscarEmp(codEmp));
+        alq.setCodveh(buscarVeh(codVeh));
         alq.setTot(tot);
         alq.setDesct(desct);
         try {
