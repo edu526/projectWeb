@@ -31,16 +31,18 @@ public class LineaAlquilerJpaController implements Serializable {
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-public LineaAlquilerJpaController() {
-        
+
+    public LineaAlquilerJpaController() {
+
         this.emf = Persistence.createEntityManagerFactory("AlquilerPU");
     }
+
     public void create(LineaAlquiler lineaAlquiler) throws PreexistingEntityException, Exception {
         if (lineaAlquiler.getLineaAlquilerPK() == null) {
             lineaAlquiler.setLineaAlquilerPK(new LineaAlquilerPK());
         }
-        lineaAlquiler.getLineaAlquilerPK().setNumalq(lineaAlquiler.getAlquiler().getNumalq());
         lineaAlquiler.getLineaAlquilerPK().setCodrut(lineaAlquiler.getRuta().getCodrut());
+        lineaAlquiler.getLineaAlquilerPK().setNumalq(lineaAlquiler.getAlquiler().getNumalq());
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -78,8 +80,8 @@ public LineaAlquilerJpaController() {
     }
 
     public void edit(LineaAlquiler lineaAlquiler) throws NonexistentEntityException, Exception {
-        lineaAlquiler.getLineaAlquilerPK().setNumalq(lineaAlquiler.getAlquiler().getNumalq());
         lineaAlquiler.getLineaAlquilerPK().setCodrut(lineaAlquiler.getRuta().getCodrut());
+        lineaAlquiler.getLineaAlquilerPK().setNumalq(lineaAlquiler.getAlquiler().getNumalq());
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -207,5 +209,5 @@ public LineaAlquilerJpaController() {
             em.close();
         }
     }
-    
+
 }

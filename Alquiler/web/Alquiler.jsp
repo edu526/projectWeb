@@ -99,7 +99,7 @@
                                             <th>Codigo</th>
                                             <th>Nombre</th>
                                             <th>Precio</th>
-                                            <th>Cantidad</th>
+                                            <th>Día</th>
                                             <th></th>
                                         </tr>    
                                     </thead>

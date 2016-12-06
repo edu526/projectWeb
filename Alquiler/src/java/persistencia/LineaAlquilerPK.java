@@ -23,13 +23,17 @@ public class LineaAlquilerPK implements Serializable {
     @Basic(optional = false)
     @Column(name = "CODRUT")
     private String codrut;
+    @Basic(optional = false)
+    @Column(name = "DIA")
+    private String dia;
 
     public LineaAlquilerPK() {
     }
 
-    public LineaAlquilerPK(String numalq, String codrut) {
+    public LineaAlquilerPK(String numalq, String codrut, String dia) {
         this.numalq = numalq;
         this.codrut = codrut;
+        this.dia = dia;
     }
 
     public String getNumalq() {
@@ -48,11 +52,20 @@ public class LineaAlquilerPK implements Serializable {
         this.codrut = codrut;
     }
 
+    public String getDia() {
+        return dia;
+    }
+
+    public void setDia(String dia) {
+        this.dia = dia;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (numalq != null ? numalq.hashCode() : 0);
         hash += (codrut != null ? codrut.hashCode() : 0);
+        hash += (dia != null ? dia.hashCode() : 0);
         return hash;
     }
 
@@ -69,12 +82,15 @@ public class LineaAlquilerPK implements Serializable {
         if ((this.codrut == null && other.codrut != null) || (this.codrut != null && !this.codrut.equals(other.codrut))) {
             return false;
         }
+        if ((this.dia == null && other.dia != null) || (this.dia != null && !this.dia.equals(other.dia))) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "persistencia.LineaAlquilerPK[ numalq=" + numalq + ", codrut=" + codrut + " ]";
+        return "persistencia.LineaAlquilerPK[ numalq=" + numalq + ", codrut=" + codrut + ", dia=" + dia + " ]";
     }
     
 }

@@ -6,7 +6,6 @@
 package persistencia;
 
 import java.io.Serializable;
-import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -27,14 +26,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "LineaAlquiler.findAll", query = "SELECT l FROM LineaAlquiler l")
     , @NamedQuery(name = "LineaAlquiler.findByNumalq", query = "SELECT l FROM LineaAlquiler l WHERE l.lineaAlquilerPK.numalq = :numalq")
     , @NamedQuery(name = "LineaAlquiler.findByCodrut", query = "SELECT l FROM LineaAlquiler l WHERE l.lineaAlquilerPK.codrut = :codrut")
-    , @NamedQuery(name = "LineaAlquiler.findByDia", query = "SELECT l FROM LineaAlquiler l WHERE l.dia = :dia")})
+    , @NamedQuery(name = "LineaAlquiler.findByDia", query = "SELECT l FROM LineaAlquiler l WHERE l.lineaAlquilerPK.dia = :dia")})
 public class LineaAlquiler implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected LineaAlquilerPK lineaAlquilerPK;
-    @Column(name = "DIA")
-    private String dia;
     @JoinColumn(name = "NUMALQ", referencedColumnName = "NUMALQ", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Alquiler alquiler;
@@ -49,8 +46,8 @@ public class LineaAlquiler implements Serializable {
         this.lineaAlquilerPK = lineaAlquilerPK;
     }
 
-    public LineaAlquiler(String numalq, String codrut) {
-        this.lineaAlquilerPK = new LineaAlquilerPK(numalq, codrut);
+    public LineaAlquiler(String numalq, String codrut, String dia) {
+        this.lineaAlquilerPK = new LineaAlquilerPK(numalq, codrut, dia);
     }
 
     public LineaAlquilerPK getLineaAlquilerPK() {
@@ -59,14 +56,6 @@ public class LineaAlquiler implements Serializable {
 
     public void setLineaAlquilerPK(LineaAlquilerPK lineaAlquilerPK) {
         this.lineaAlquilerPK = lineaAlquilerPK;
-    }
-
-    public String getDia() {
-        return dia;
-    }
-
-    public void setDia(String dia) {
-        this.dia = dia;
     }
 
     public Alquiler getAlquiler() {
