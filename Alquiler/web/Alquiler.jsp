@@ -103,7 +103,7 @@
                                             <th></th>
                                         </tr>    
                                     </thead>
-                                    <tbody>
+                                    <tbody class="table">
                                         <%
                                             for (int i = 0; i < alq.getCesta().size(); i++) {
                                                 LineaObj li = (LineaObj) alq.getCesta().get(i);
@@ -117,19 +117,32 @@
                                         </tr>
                                         <% }%>
                                     </tbody>
+
                                 </table>
                                 <x:form action="/ListarRutaAction">
-                                    <% if (alq.getCesta().size()>0) {
-                                            
-                                    %>
-                                    <h6 style='margin-left: 72%'>Rutas (S/.):      --->  <%= alq.getImporteRutas()%></h6>
-                                    <h6 style='margin-left: 70%'>Vehículo/d (S/.): --->  <%= alq.getImporteVehículo()%></h6>
-                                    <h6 style='margin-left: 70%'>Descuento (S/.):  --->  <%= alq.getDesct()%></h6>
-                                    <h6 style='margin-left: 80%'>------------</h6>
-                                    <h6 style='margin-left: 70%'>Importe Total (S/.):      --->  <%= alq.getTotal() %></h6>
-                                    <% } %>
                                     <x:submit styleClass="btn btn-warning" property="lisRut" value="Buscar Ruta" />
                                 </x:form>
+                                <table class="table" style="width: 30%; margin-left: 67%;">
+                                    <tbody>
+                                        <tr> 
+                                            <td style="background-color: rgba(255, 235, 59, 0.39)">Rutas (S/.):</td>
+                                            <td style="text-align: center"><%= alq.getImporteVehículo()%></td>                                
+                                        </tr>   
+                                        <tr> 
+                                            <td style="background-color: rgba(255, 235, 59, 0.39)">Vehículo/d (S/.):</td>
+                                            <td style="text-align: center"><%= alq.getImporteRutas()%></td>                                
+                                        </tr>     
+                                        <tr> 
+                                            <td style="background-color: rgba(255, 235, 59, 0.39)">Descuento (S/.):</td>
+                                            <td style="text-align: center"><%= alq.getDesct()%></td>                                
+                                        </tr>        
+                                        <tr> 
+                                            <td style="background-color: rgba(255, 235, 59, 0.39)">Importe Total (S/.):</td>
+                                            <td style="background-color: red; color: white; text-align: center"><samp><%= alq.getTotal()%></samp></td>                                
+                                        </tr>     
+                                    </tbody>
+                                </table>
+
                             </div>
                         </div>
                     </div>

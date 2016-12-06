@@ -57,6 +57,7 @@ public class AlquilerObj {
     }
 
     public double getDesct() {
+        
         if (cesta.size()>=4) {
             return (getImporteRutas()+getImporteVehículo()) * 0.10;
         }
