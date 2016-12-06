@@ -14,6 +14,8 @@ public class AlquilerObj {
     private VehiculoObj codVeh;
 
     private String numAlq;
+    
+    static public List<String> d = new ArrayList();
 
     public List getCesta() {
         return cesta;
@@ -28,9 +30,22 @@ public class AlquilerObj {
         lin.setCodRut(rutObj);
         lin.setDia(dia);
         lin.setNumAlq(getNumAlq());
+        d.add(dia);
         cesta.add(lin);
     }
 
+    public void quitarLinea(String dia) {
+
+        for (int i = 0; i < cesta.size(); i++) {
+            LineaObj lin = (LineaObj) cesta.get(i);
+            String numObt = lin.getDia();
+            if (numObt.equals(dia)) {
+                d.remove(i);
+                cesta.remove(i);
+            }
+        }
+    }
+    
     public String getHora() {
         Date f = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
@@ -95,14 +110,5 @@ public class AlquilerObj {
     
     public double getTotal() {
         return getImporteRutas()+getImporteVehículo()-getDesct();
-    }
-
-    public boolean restriccion(List<Alquiler> li) {
-        for (Alquiler a : li) {
-            if (a.getCodemp().getCodemp().equals(getCodEmp().getCodEmp())) {
-                return false;
-            }
-        }
-        return true;
     }
 }

@@ -8,7 +8,6 @@
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
 
-
     <bean id="alqu" class="persistencia.Alquiler"/>
     <bean id="alquCont" class="persistencia.AlquilerJpaController"/>
     <bean id="empe" class="persistencia.Empleado"/>
@@ -57,6 +56,10 @@
     </bean>
   
     <bean id="/AgregarRutaAction" class="presentacion.AgregarRutaAction">
+        <property name="ser" ref="serv"/>
+    </bean>
+    
+    <bean id="/QuitarRutaAction" class="presentacion.QuitarRutaAction">
         <property name="ser" ref="serv"/>
     </bean>
           

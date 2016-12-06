@@ -20,37 +20,35 @@
         </div>
         <!-- FIN TITULO PÁGINA -->        
         <!-- CUERPO DE LA PÁGINA -->
-        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Cod</th>
+                    <th>NºFlota</th>
+                    <th>Dueño</th>
+                    <th>Modelo</th>
+                    <th>Precio</th>
+                    <th>       </th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (Vehiculo v: veh) {
+                %>
 
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Cod</th>
-                                    <th>NºFlota</th>
-                                    <th>Dueño</th>
-                                    <th>Modelo</th>
-                                    <th>Precio</th>
-                                    <th>       </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% for (Vehiculo v: veh) {
-                                %>
-                                
-                                <x:form action="/AgregarVehiculoAction">
-                                <tr>
-                                    <td><x:text property="cod" value='<%= v.getCodveh()%>' readonly="true"/></td>
-                                    <td><%= v.getNflota()%></td>
-                                    <td><%= v.getCodemp().getNomemp()+" "+ v.getCodemp().getApeemp()%></td>
-                                    <td><%= v.getModelveh()%></td>
-                                    <td><%= v.getPrecveh()+"" %></td>
-                                                                       
-                                    <td><x:submit value="Agregar"/></td>
-                                </tr>
-                                </x:form>
-                                <% }%>
-                            </tbody>
-                        </table >
+                <x:form action="/AgregarVehiculoAction">
+                    <tr>
+                        <td><x:text property="cod" value='<%= v.getCodveh()%>' readonly="true"/></td>
+                        <td><%= v.getNflota()%></td>
+                        <td><%= v.getCodemp().getNomemp()+" "+ v.getCodemp().getApeemp()%></td>
+                        <td><%= v.getModelveh()%></td>
+                        <td><%= v.getPrecveh()+"" %></td>
+
+                        <td><x:submit styleClass="btn btn-success" value="Agregar"/></td>
+                    </tr>
+                </x:form>
+                <% }%>
+            </tbody>
+        </table >
         <!-- FIN CUERPO DE LA PÁGINA form-->
 
         <%@ include file="styls/plantilla-list-part03.jsp" %>

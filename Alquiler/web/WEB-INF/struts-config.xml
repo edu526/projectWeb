@@ -7,7 +7,7 @@
 
 <struts-config>
     <form-beans>
-        <form-bean name="optform" type="presentacion.optform"/>
+        <form-bean name="QuitarRutaForm" type="presentacion.QuitarRutaForm"/>
         <form-bean name="AgregarRutaForm" type="presentacion.AgregarRutaForm"/>
         <form-bean name="ListarRutaForm" type="presentacion.ListarRutaForm"/>
         <form-bean name="ListarVehiculoForm" type="presentacion.ListarVehiculoForm"/>
@@ -49,7 +49,9 @@
         <action input="/Alquiler.jsp" name="AgregarRutaForm" path="/AgregarRutaAction" scope="request" type="presentacion.AgregarRutaAction">
             <forward name="Alquilar" path="/Alquiler.jsp" redirect="true"/>
         </action>
-        <action input="/options.jsp" name="optform" path="/optaction" scope="request" type="presentacion.optaction"/>
+        <action input="/Alquiler.jsp" name="QuitarRutaForm" path="/QuitarRutaAction" scope="request" type="presentacion.QuitarRutaAction">
+            <forward name="Alquiler" path="/Alquiler.jsp" redirect="true"/>
+        </action>
             
         <action input="/BuscarEmpleado.jsp" name="AgregarEmpForm" path="/AgregarEmpAction" scope="request" type="presentacion.AgregarEmpAction"/>
         <action path="/Welcome" forward="/welcomeStruts.jsp"/>

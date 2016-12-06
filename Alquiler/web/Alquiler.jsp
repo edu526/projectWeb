@@ -108,13 +108,15 @@
                                             for (int i = 0; i < alq.getCesta().size(); i++) {
                                                 LineaObj li = (LineaObj) alq.getCesta().get(i);
                                         %>
+                                        <x:form action="/QuitarRutaAction">
                                         <tr> 
                                             <td><span class="label label-primary"><%= li.getCodRut().getCodRut()%></span></td>
                                             <td><%= li.getCodRut().getParadAut()%></td>
                                             <td><%= li.getCodRut().getPrecRut()%></td>
-                                            <td><%= li.getDia()%></td>
-                                            <td></td>                                    
+                                            <td><x:text property="dia" value="<%= li.getDia()%>" readonly="true"/></td>
+                                            <td><x:submit styleClass="btn btn-danger" value="Quitar"/></td>                           
                                         </tr>
+                                        </x:form>
                                         <% }%>
                                     </tbody>
 
@@ -126,11 +128,11 @@
                                     <tbody>
                                         <tr> 
                                             <td style="background-color: rgba(255, 235, 59, 0.39)">Rutas (S/.):</td>
-                                            <td style="text-align: center"><%= alq.getImporteVehículo()%></td>                                
+                                            <td style="text-align: center"><%= alq.getImporteRutas()%></td>                                
                                         </tr>   
                                         <tr> 
                                             <td style="background-color: rgba(255, 235, 59, 0.39)">Vehículo/d (S/.):</td>
-                                            <td style="text-align: center"><%= alq.getImporteRutas()%></td>                                
+                                            <td style="text-align: center"><%= alq.getImporteVehículo()%></td>                                
                                         </tr>     
                                         <tr> 
                                             <td style="background-color: rgba(255, 235, 59, 0.39)">Descuento (S/.):</td>

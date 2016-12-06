@@ -17,7 +17,7 @@
 
         <!-- CUERPO DE LA PÁGINA -->
 
-        <table>
+        <table class="table">
             <thead>
                 <tr>
                     <th>Codigo</th>
@@ -41,14 +41,14 @@
                                 <x:options property="dialist" />
                             </x:select>
                         </td>
-                <td><x:submit value="Agregar"/></td>
-            </tr>
-        </x:form>
-        <% }%>
-    </tbody>
-</table>
-<!-- FIN CUERPO DE LA PÁGINA form-->
+                        <td><x:submit styleClass="btn btn-success" value="Agregar"/></td>
+                    </tr>
+                </x:form>
+                <% }%>
+            </tbody>
+        </table>
+        <!-- FIN CUERPO DE LA PÁGINA form-->
 
-<%@ include file="styls/plantilla-list-part03.jsp" %>
-</body>
+        <%@ include file="styls/plantilla-list-part03.jsp" %>
+    </body>
 </html>

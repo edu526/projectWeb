@@ -5,6 +5,7 @@
  */
 package servicio;
 
+import java.util.ArrayList;
 import negocio.AlquilerObj;
 import negocio.EmpleadoObj;
 import negocio.LineaObj;
@@ -31,6 +32,7 @@ public class ServicioImp implements Servicio {
     @Override
     public AlquilerObj nuevoAlquiler() {
         alqObj = new AlquilerObj();
+        AlquilerObj.d.clear();
         return alqObj;
     }
 
@@ -98,6 +100,11 @@ public class ServicioImp implements Servicio {
         ru.setParadAut(r.getParadaut());
         ru.setPrecRut(r.getPrecrut());
         alqObj.agregarLinea(ru, dia);
+    }
+
+    @Override
+    public void quitarRuta(String dia) {
+        alqObj.quitarLinea(dia);
     }
 
 }

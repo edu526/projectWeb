@@ -16,4 +16,5 @@ public interface Servicio {
     public String grabar();
     public void agregarVeh(String cod);
     public void agregarRut(String cod, String dia);
+    public void quitarRuta(String cod);
 }
