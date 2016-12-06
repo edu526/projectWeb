@@ -7,34 +7,35 @@ package presentacion;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.JOptionPane;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import servicio.Servicio;
 
 /**
  *
  * @author edd
  */
-public class AgregarRutaAction extends org.apache.struts.action.Action {
+public class optaction extends org.apache.struts.action.Action {
 
-    private Servicio ser;
+    /* forward name="success" path="" */
+    private static final String SUCCESS = "success";
 
-    public void setSer(Servicio ser) {
-        this.ser = ser;
-    }
-    
-    
+    /**
+     * This is the action called from the Struts framework.
+     *
+     * @param mapping The ActionMapping used to select this instance.
+     * @param form The optional ActionForm bean for this request.
+     * @param request The HTTP Request we are processing.
+     * @param response The HTTP Response we are processing.
+     * @throws java.lang.Exception
+     * @return
+     */
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         
-        AgregarRutaForm x = (AgregarRutaForm) form;
         
-        ser.agregarRut(x.getCod(), x.getDias());
-        
-        return mapping.findForward("Alquilar");
+        return mapping.findForward(SUCCESS);
     }
 }

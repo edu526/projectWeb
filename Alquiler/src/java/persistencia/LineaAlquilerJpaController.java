@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import persistencia.exceptions.NonexistentEntityException;
@@ -30,7 +31,10 @@ public class LineaAlquilerJpaController implements Serializable {
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-
+public LineaAlquilerJpaController() {
+        
+        this.emf = Persistence.createEntityManagerFactory("AlquilerPU");
+    }
     public void create(LineaAlquiler lineaAlquiler) throws PreexistingEntityException, Exception {
         if (lineaAlquiler.getLineaAlquilerPK() == null) {
             lineaAlquiler.setLineaAlquilerPK(new LineaAlquilerPK());

@@ -196,13 +196,14 @@ public class DatosImp implements Datos {
     }
 
     @Override
-    public boolean grabarAlquiler(String numAlq, String fecAlq, String estadAlq, String codEmp, String codVeh, double tot, double desct) {
+    public boolean grabarAlquiler(String numAlq, String fecAlq, String estadAlq, String codEmp, String codVeh, double tot, String hora,double desct) {
         alq.setNumalq(numAlq);
         alq.setFecalq(fecAlq);
         alq.setEstadalq(estadAlq);
         alq.setCodemp(buscarEmp(codEmp));
         alq.setCodveh(buscarVeh(codVeh));
         alq.setTot(tot);
+        alq.setHora(hora);
         alq.setDesct(desct);
         try {
             alqCon.create(alq);
@@ -213,9 +214,10 @@ public class DatosImp implements Datos {
     }
 
     @Override
-    public String grabarDetalle(String numAlq, String codRut) {
+    public String grabarDetalle(String numAlq, String codRut, String dia) {
         lin.setAlquiler(alqCon.findAlquiler(numAlq));
         lin.setRuta(rutCon.findRuta(codRut));
+        lin.setDia(dia);
         linPK.setNumalq(numAlq);
         linPK.setCodrut(codRut);
         lin.setLineaAlquilerPK(linPK);

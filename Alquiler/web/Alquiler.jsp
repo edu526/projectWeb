@@ -18,11 +18,6 @@
                     <h3>Alquiler!!</h3>
                 </div>
 
-                <div class="title_right">
-                    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-
-                    </div>
-                </div>
             </div>
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
@@ -33,107 +28,119 @@
 
                             <div class="form-horizontal form-label-left" >
 
-
                                 <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Número</label>
-                                    <div class="col-md-2 col-sm-2 col-xs-4">
-                                        <input id="name" class="form-control col-md-7 col-xs-12" value='<%= alq.getNumAlq() + ""%>' type="text">
+                                    <label class="control-label col-md-1 col-sm-3 col-xs-6" >Número</label>
+                                    <div class="col-md-2 col-sm-2 col-xs-2">
+                                        <input id="name" class="form-control col-md-7 col-xs-12" value='<%= alq.getNumAlq() + ""%>' type="text" readonly="">
                                     </div>
-                                </div>
-                                <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Fecha</label>
+                                    <label class="control-label col-md-1 col-sm-3 col-xs-3" >Fecha</label>
+                                    </label>
+                                    <div class="col-md-2 col-sm-2 col-xs-2">
+                                        <input id="name" class="form-control col-md-7 col-xs-6" value='<%= alq.getFecAlq()%>' type="text" readonly="">
+                                    </div>
+                                    <label class="control-label col-md-1 col-sm-3 col-xs-6" >Hora</label>
                                     </label>
                                     <div class="col-md-2 col-sm-2 col-xs-4">
-                                        <input id="name" class="form-control col-md-7 col-xs-12" value='<%= alq.getFecAlq()%>' type="text">
-                                    </div>
-                                </div>
-                                <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Hora</label>
-                                    </label>
-                                    <div class="col-md-2 col-sm-2 col-xs-4">
-                                        <input id="name" class="form-control col-md-7 col-xs-12" value='<%= alq.getHora()%>' type="text">
+                                        <input id="name" class="form-control col-md-7 col-xs-6" value='<%= alq.getHora()%>' type="text" readonly="">
                                     </div>
                                 </div>
 
                                 <span class="section">Datos Empleado</span>
 
                                 <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Código</label>
+                                    <label class="control-label col-md-1 col-sm-3 col-xs-12" >Código</label>
                                     <div class="col-md-2 col-sm-2 col-xs-4">
-                                        <input id="name" class="form-control col-md-7 col-xs-12" value='<%= alq.getCodEmp().getCodEmp()%>' type="text">
+                                        <input id="name" class="form-control col-md-7 col-xs-12" value='<%= alq.getCodEmp().getCodEmp()%>' type="text" readonly="">
                                     </div>
-                                </div>
-                                <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Nombre</label>
+                                    <label class="control-label col-md-1 col-sm-3 col-xs-12" >Nombre</label>
                                     <div class="col-md-4 col-sm-4 col-xs-8">
-                                        <input id="name" class="form-control col-md-7 col-xs-12" value='<%= alq.getCodEmp().getNomEmp()%>' type="text">
+                                        <input id="name" class="form-control col-md-7 col-xs-12" value='<%= alq.getCodEmp().getNomEmp()%>' type="text" readonly="">
                                     </div>
                                 </div>
 
                                 <span class="section">Datos Vehículo</span>
 
                                 <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Código <span class="required">*</span>
+                                    <label class="control-label col-md-1 col-sm-3 col-xs-12" >Código <span class="required">*</span>
                                     </label>
                                     <div class="col-md-2 col-sm-2 col-xs-4">
-                                        <input id="name" class="form-control col-md-7 col-xs-12" value='<%= alq.getCodVeh().getCodVeh()%>' type="text">
+                                        <input id="name" class="form-control col-md-7 col-xs-12" value='<%= alq.getCodVeh().getCodVeh()%>' type="text" readonly="">
                                     </div>
-                                </div>
-                                <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Modelo</label>
-                                    <div class="col-md-4 col-sm-4 col-xs-8">
-                                        <input id="name" class="form-control col-md-7 col-xs-12" value='<%= alq.getCodVeh().getModelVeh()%>' type="text">
+                                    <label class="control-label col-md-1 col-sm-3 col-xs-12" for="name">Modelo</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-6">
+                                        <input id="name" class="form-control col-md-7 col-xs-12" value='<%= alq.getCodVeh().getModelVeh()%>' type="text" readonly="">
                                     </div>
-                                </div>
-                                <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Costo</label>
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12">Costo x día</label>
                                     <div class="col-md-2 col-sm-2 col-xs-4">
-                                        <input id="name" class="form-control col-md-7 col-xs-12" value='<%= alq.getCodVeh().getPrecVeh() + ""%>' type="text">
+                                        <input id="name" class="form-control col-md-7 col-xs-12" value='<%= alq.getCodVeh().getPrecVeh() + ""%>' type="text" readonly="">
 
                                     </div>
-
                                 </div>
-
-                                <span class="section">Datos Ruta</span>
-
-                                <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Código <span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-2 col-sm-2 col-xs-4">
-                                        <input id="name" class="form-control col-md-7 col-xs-12" value='<%= alq.getLinObj().getCodRut().getCodRut()%>' type="text">
-                                    </div>
-                                </div>
-                                <div class="item form-group">
-                                    <label for="password2" class="control-label col-md-3 col-sm-3 col-xs-12">Paradero</label>
-                                    <div class="col-md-4 col-sm-4 col-xs-8">
-                                        <input id="name" class="form-control col-md-7 col-xs-12" value='<%= alq.getLinObj().getCodRut().getParadAut()%>' type="text">
-                                    </div>
-                                </div>
-                                <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Costo</label>
-                                    <div class="col-md-2 col-sm-2 col-xs-4">
-                                        <input id="name" class="form-control col-md-7 col-xs-12" value='<%= alq.getLinObj().getCodRut().getPrecRut() + ""%>' type="text">
-                                    </div>
-                                </div>
-                                <div class="ln_solid"></div>
-                                <div class="form-group">
-                                    <div class="col-md-6 col-md-offset-3">
-                                        <x:form action="/ListarVehiculoAction">
-                                            <x:submit property="lisVeh" value="Buscar Vehículo"/>
-                                        </x:form>
-                                        <x:form action="/ListarRutaAction">
-                                            <x:submit property="lisRut" value="Buscar Ruta" />
-                                        </x:form>
-                                        <x:form action="/GrabarAlquilerAction">
-                                            <x:submit property="gra" value="Grabar"/>
-                                        </x:form>
-                                    </div>
-                                </div>
+                                <x:form action="/ListarVehiculoAction">
+                                    <x:submit styleClass="btn btn-warning" property="lisVeh" value="Buscar Vehículo"/>
+                                </x:form>
                             </div>
                         </div>
                     </div>
                 </div>
 
+            </div>
+            <div class="title_left">
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+
+                        <div class="x_content">
+                            <div class="form-horizontal form-label-left" >
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Codigo</th>
+                                            <th>Nombre</th>
+                                            <th>Precio</th>
+                                            <th>Cantidad</th>
+                                            <th></th>
+                                        </tr>    
+                                    </thead>
+                                    <tbody>
+                                        <%
+                                            for (int i = 0; i < alq.getCesta().size(); i++) {
+                                                LineaObj li = (LineaObj) alq.getCesta().get(i);
+                                        %>
+                                        <tr> 
+                                            <td><span class="label label-primary"><%= li.getCodRut().getCodRut()%></span></td>
+                                            <td><%= li.getCodRut().getParadAut()%></td>
+                                            <td><%= li.getCodRut().getPrecRut()%></td>
+                                            <td><%= li.getDia()%></td>
+                                            <td></td>                                    
+                                        </tr>
+                                        <% }%>
+                                    </tbody>
+                                </table>
+                                <x:form action="/ListarRutaAction">
+                                    <% if (alq.getCesta().size()>0) {
+                                            
+                                    %>
+                                    <h6 style='margin-left: 72%'>Rutas (S/.):      --->  <%= alq.getImporteRutas()%></h6>
+                                    <h6 style='margin-left: 70%'>Vehículo/d (S/.): --->  <%= alq.getImporteVehículo()%></h6>
+                                    <h6 style='margin-left: 70%'>Descuento (S/.):  --->  <%= alq.getDesct()%></h6>
+                                    <h6 style='margin-left: 80%'>------------</h6>
+                                    <h6 style='margin-left: 70%'>Importe Total (S/.):      --->  <%= alq.getTotal() %></h6>
+                                    <% } %>
+                                    <x:submit styleClass="btn btn-warning" property="lisRut" value="Buscar Ruta" />
+                                </x:form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3">
+                            <x:form action="/GrabarAlquilerAction">
+                                <x:submit styleClass="btn btn-danger  btn-lg" property="gra" value="Grabar"/>
+                            </x:form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 

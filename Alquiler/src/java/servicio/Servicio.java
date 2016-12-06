@@ -15,5 +15,5 @@ public interface Servicio {
     public AlquilerObj nuevoAlquiler();
     public String grabar();
     public void agregarVeh(String cod);
-    public void agregarRut(String cod);
+    public void agregarRut(String cod, String dia);
 }

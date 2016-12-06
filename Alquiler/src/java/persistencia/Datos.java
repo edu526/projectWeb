@@ -22,9 +22,9 @@ public interface Datos {
 
     public String actualizarRut(String codRut, String paradAut, double precRut);
 
-    public boolean grabarAlquiler(String numAlq, String fecAlq, String estadAlq, String codEmp, String codVeh, double tot, double desct);
+    public boolean grabarAlquiler(String numAlq, String fecAlq, String estadAlq, String codEmp, String codVeh, double tot, String hora, double desct);
 
-    public String grabarDetalle(String numAlq, String codRut);
+    public String grabarDetalle(String numAlq, String codRut, String dia);
     
     public List listarEmp();
     

@@ -4,31 +4,31 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 import persistencia.Alquiler;
-import persistencia.Datos;
 
 public class AlquilerObj {
 
-    private LineaObj linObj;
+    private List cesta = new ArrayList();
     private String estadAlq;
     private EmpleadoObj codEmp;
     private VehiculoObj codVeh;
 
     private String numAlq;
 
+    public List getCesta() {
+        return cesta;
+    }
+
     public String getNumAlq() {
         return numAlq;
     }
 
-    public LineaObj getLinObj() {
-        return linObj;
-    }
-
-    public void setLinObj(RutaObj rutObj) {
-        linObj = new LineaObj();
-        linObj.setCodRut(rutObj);
-        linObj.setNumAlq(getNumAlq());
+    public void agregarLinea(RutaObj rutObj, String dia) {
+        LineaObj lin = new LineaObj();
+        lin.setCodRut(rutObj);
+        lin.setDia(dia);
+        lin.setNumAlq(getNumAlq());
+        cesta.add(lin);
     }
 
     public String getHora() {
@@ -57,7 +57,10 @@ public class AlquilerObj {
     }
 
     public double getDesct() {
-        return getTotal()*0.05;
+        if (cesta.size()>=4) {
+            return (getImporteRutas()+getImporteVehículo()) * 0.10;
+        }
+        return 0.00;        
     }
 
     public EmpleadoObj getCodEmp() {
@@ -76,12 +79,25 @@ public class AlquilerObj {
         this.codVeh = codVeh;
     }
 
-    public double getTotal() {
-        return codVeh.getPrecVeh() + linObj.getCodRut().getPrecRut();
+    public double getImporteRutas() {
+        double total = 0;
+        for (int i = 0; i < cesta.size(); i++) {
+            LineaObj lin = (LineaObj) cesta.get(i);
+            total += lin.getCodRut().getPrecRut();
+        }
+        return total;
     }
     
-    public boolean restriccion(List<Alquiler> li){
-        for (Alquiler a: li) {
+    public double getImporteVehículo(){
+        return getCodVeh().getPrecVeh()*getCesta().size();
+    }
+    
+    public double getTotal() {
+        return getImporteRutas()+getImporteVehículo()-getDesct();
+    }
+
+    public boolean restriccion(List<Alquiler> li) {
+        for (Alquiler a : li) {
             if (a.getCodemp().getCodemp().equals(getCodEmp().getCodEmp())) {
                 return false;
             }

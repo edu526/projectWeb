@@ -5,9 +5,9 @@
  */
 package servicio;
 
-import javax.swing.JOptionPane;
 import negocio.AlquilerObj;
 import negocio.EmpleadoObj;
+import negocio.LineaObj;
 import negocio.RutaObj;
 import negocio.VehiculoObj;
 import persistencia.Datos;
@@ -36,20 +36,24 @@ public class ServicioImp implements Servicio {
 
     @Override
     public String grabar() {
-        JOptionPane.showMessageDialog(null, "Nivel Servicio "+alqObj.getNumAlq());
-        boolean es = dat.grabarAlquiler(alqObj.getNumAlq(), 
-                alqObj.getFecAlq(), 
-                alqObj.getEstadAlq(), 
-                alqObj.getCodEmp().getCodEmp(), 
-                alqObj.getCodVeh().getCodVeh(), 
+        boolean es = dat.grabarAlquiler(alqObj.getNumAlq(),
+                alqObj.getFecAlq(),
+                alqObj.getEstadAlq(),
+                alqObj.getCodEmp().getCodEmp(),
+                alqObj.getCodVeh().getCodVeh(),
                 alqObj.getTotal(),
-                alqObj.getDesct());        
-        
+                alqObj.getHora(),
+                alqObj.getDesct());
         if (es) {
-            return dat.grabarDetalle(alqObj.getNumAlq(), alqObj.getLinObj().getCodRut().getCodRut());
+            for (int i = 0; i < alqObj.getCesta().size(); i++) {
+                LineaObj lin = (LineaObj) alqObj.getCesta().get(i);
+                dat.grabarDetalle(lin.getNumAlq(), lin.getCodRut().getCodRut(), lin.getDia());
+            }
+            
+            return "Proceso Satisfactorio";
         }
-        
-       return "Fallo al grabar";
+
+        return "Fallo al grabar";
     }
 
     @Override
@@ -86,14 +90,14 @@ public class ServicioImp implements Servicio {
     }
 
     @Override
-    public void agregarRut(String cod) {
+    public void agregarRut(String cod, String dia) {
         Ruta r = dat.buscarRut(cod);
         RutaObj ru = new RutaObj();
 
         ru.setCodRut(r.getCodrut());
         ru.setParadAut(r.getParadaut());
         ru.setPrecRut(r.getPrecrut());
-        alqObj.setLinObj(ru);
+        alqObj.agregarLinea(ru, dia);
     }
 
 }
