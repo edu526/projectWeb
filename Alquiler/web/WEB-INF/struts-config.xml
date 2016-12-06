@@ -38,13 +38,13 @@
             <forward name="Mensaje" path="/Mensaje.jsp" redirect="true"/>
         </action>
         <action input="/Alquiler.jsp" name="ListarVehiculoForm" path="/ListarVehiculoAction" scope="request" type="presentacion.ListarVehiculoAction">
-            <forward name="Listar" path="/BuscarVehiculo.jsp" redirect="true"/>
+            <forward name="Listar" path="/Vehiculo.jsp" redirect="true"/>
         </action>
-        <action input="/BuscarVehiculo.jsp" name="AgregarVehiculoForm" path="/AgregarVehiculoAction" scope="request" type="presentacion.AgregarVehiculoAction">
+        <action input="/Vehiculo.jsp" name="AgregarVehiculoForm" path="/AgregarVehiculoAction" scope="request" type="presentacion.AgregarVehiculoAction">
             <forward name="Alquilar" path="/Alquiler.jsp" redirect="true"/>
         </action>
         <action input="/Alquiler.jsp" name="ListarRutaForm" path="/ListarRutaAction" scope="request" type="presentacion.ListarRutaAction">
-            <forward name="Listar" path="/BuscarRuta.jsp" redirect="true"/>
+            <forward name="Listar" path="/Ruta.jsp" redirect="true"/>
         </action>
         <action input="/Alquiler.jsp" name="AgregarRutaForm" path="/AgregarRutaAction" scope="request" type="presentacion.AgregarRutaAction">
             <forward name="Alquilar" path="/Alquiler.jsp" redirect="true"/>

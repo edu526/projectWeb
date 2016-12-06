@@ -77,7 +77,7 @@
                                     </div>
                                 </div>
                                 <x:form action="/ListarVehiculoAction">
-                                    <x:submit styleClass="btn btn-warning" property="lisVeh" value="Buscar Vehículo"/>
+                                    <x:submit styleClass="btn btn-warning" property="lisVeh" value="Listar Vehículos"/>
                                 </x:form>
                             </div>
                         </div>
@@ -122,7 +122,7 @@
 
                                 </table>
                                 <x:form action="/ListarRutaAction">
-                                    <x:submit styleClass="btn btn-warning" property="lisRut" value="Buscar Ruta" />
+                                    <x:submit styleClass="btn btn-warning" property="lisRut" value="Listar Rutas" />
                                 </x:form>
                                 <table class="table" style="width: 30%; margin-left: 67%;">
                                     <tbody>

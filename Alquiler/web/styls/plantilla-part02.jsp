@@ -29,27 +29,17 @@
 
                                 <li><a><i class="fa fa-edit"></i> Vehiculo <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="GrabarVehiculo.jsp">Agregar uno nuevo</a></li>
+                                        <li><a href="#">Agregar uno nuevo</a></li>
                                     </ul>
                                 </li>
                                 
                                 <li><a><i class="fa fa-edit"></i> Ruta <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="GrabarRuta.jsp">Agregar uno nuevo</a></li>
+                                        <li><a href="#">Agregar uno nuevo</a></li>
                                     </ul>
                                 </li>
                                 
                                 <!-- END Menu 02-->
-                            </ul>
-                        </div>
-                        <div class="menu_section">
-                            <h3>Live On</h3>
-                            <ul class="nav side-menu">
-                                <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="#">E-commerce</a></li>
-                                    </ul>
-                                </li>
                             </ul>
                         </div>
                     </div>
